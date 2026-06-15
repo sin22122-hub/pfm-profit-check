@@ -5,7 +5,7 @@ export default function HomePage({ onStart }) {
     <main>
       <section className="hero">
         <div className="hero-copy">
-          <p className="eyebrow">Wealth Flow Management</p>
+          <p className="eyebrow">Profit Flow Management</p>
           <h1>你的店真的有賺錢嗎？</h1>
           <p className="lead">
             透過獲利、成本、客戶經營與數位能力四大面向，
