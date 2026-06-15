@@ -31,7 +31,7 @@ export default function App() {
           <div className="brand-mark">PFM</div>
           <div>
             <strong>PFM 美業獲利健檢™</strong>
-            <span>Wealth Flow Management</span>
+            <span>Profit Flow Management</span>
           </div>
         </div>
         <button className="btn small" onClick={startAssessment}>開始健檢</button>
