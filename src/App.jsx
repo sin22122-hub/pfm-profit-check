@@ -28,9 +28,9 @@ export default function App() {
     <>
       <header className="site-header">
         <div className="brand">
-          <div className="brand-mark">WFM</div>
+          <div className="brand-mark">PFM</div>
           <div>
-            <strong>WFM 美業獲利健檢™</strong>
+            <strong>PFM 美業獲利健檢™</strong>
             <span>Wealth Flow Management</span>
           </div>
         </div>
