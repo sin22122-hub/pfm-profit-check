@@ -7,7 +7,7 @@ const FIELD_MAP = {
   phone: 'entry.1707906243',
   instagram: 'entry.527231499',
   storeType: 'entry.1449582445',
-  branchCount: 'entry.672256556',
+  businessType: 'entry.672256556',
   month: 'entry.1620963029',
 
   serviceRevenue: 'entry.1565655071',
