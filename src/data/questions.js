@@ -15,8 +15,13 @@ export const questions = [
         options: ['美甲', '美睫', '美容', '紋繡', '美髮', 'SPA/按摩', '複合式', '其他'],
         required: true
       },
-      { key: 'businessType',  label: '經營型態',  type: 'select',  required: true,  options: ['個人工作室', '小型單店', '多人店面',  '多店／連鎖'
-  ] },
+      {
+        key: 'businessType',
+        label: '經營型態',
+        type: 'select',
+        options: ['個人工作室', '小型單店', '多人店面', '多店／連鎖'],
+        required: true
+      },
       { key: 'month', label: '本次填寫月份', type: 'text', placeholder: '例如：2026/06' }
     ]
   },
@@ -97,7 +102,7 @@ export const questions = [
         key: 'mainPain',
         label: '目前最大的經營困擾是什麼？',
         type: 'checkbox',
-        options: ['回流率低', '流量不穩定', '不知道如何提升營收', '成本壓力大', '社群經營沒成效', '內容不知道怎麼做', '廣告投放沒效果', '團隊管理困難', '其他']
+        options: ['新客不足', '不會經營自媒體', '流量不穩定', '回流率低', '成本壓力大', '不知道如何提升營收', '廣告投放沒效果', '團隊管理困難', '其他']
       },
       {
         key: 'growthGoal',
@@ -113,7 +118,7 @@ export const questions = [
         type: 'checkbox',
         maxSelect: 3,
         hint: '請最多選擇3項',
-        options: ['自己學習（課程）', '邊做邊學（陪跑）', '接給建議（一對一顧問）', '解診斷結果']
+        options: ['自己學習（課程）', '邊做邊學（陪跑）', '直接給建議（一對一顧問）', '解診斷結果']
       }
     ]
   },
