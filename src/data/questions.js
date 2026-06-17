@@ -69,14 +69,14 @@ export const questions = [
   },
   {
     id: 'social',
-    title: '數位經營',
+    title: '流量與經營系統',
     description: '請填寫目前社群與內容經營狀況。',
     fields: [
       {
         key: 'socialActive',
         label: '目前是否有經營社群媒體？',
         type: 'select',
-        options: ['有固定經營', '有經營但不穩定', '偶爾發文', '幾乎沒有經營', '完全沒有經營'],
+        options: ['每天更新', '每週穩定更新', '每月更新', '偶爾想到才更新', '完全沒有'],
         required: true
       },
       {
