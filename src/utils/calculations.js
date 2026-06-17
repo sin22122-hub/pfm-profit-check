@@ -56,10 +56,10 @@ function returningStatus(value) {
 }
 
 function paymentFeeStatus(value) {
-  if (value <= 0.02) return '優秀';
-  if (value <= 0.03) return '健康';
-  if (value <= 0.04) return '普通';
-  if (value <= 0.05) return '偏高';
+  if (value <= 0.01) return '優秀';
+  if (value <= 0.02) return '健康';
+  if (value <= 0.03) return '普通';
+  if (value <= 0.04) return '偏高';
   return '危險';
 }
 
@@ -89,48 +89,48 @@ function gradeCustomer(score) {
 function socialScore(data) {
   const active = {
     '每天更新': 100,
-    '每週穩定更新': 80,
-    '每月更新': 60,
-    '偶爾想到才更新': 30,
+    '每週穩定更新': 70,
+    '每月更新': 35,
+    '偶爾想到才更新': 15,
     '完全沒有': 0,
-    '有固定經營': 80,
-    '有經營但不穩定': 60,
-    '偶爾發文': 30,
-    '幾乎沒有經營': 20,
+    '有固定經營': 70,
+    '有經營但不穩定': 40,
+    '偶爾發文': 20,
+    '幾乎沒有經營': 10,
     '完全沒有經營': 0,
   }[data.socialActive] ?? 0;
 
   const posts = {
-    '5篇以上': 100,
-    '3~4篇': 80,
-    '1~2篇': 60,
-    '0篇': 20,
+    '5篇以上': 80,
+    '3~4篇': 60,
+    '1~2篇': 35,
+    '0篇': 0,
   }[data.weeklyPosts] ?? 0;
 
-  return Math.round(active * 0.5 + posts * 0.5);
+  return Math.round(active * 0.6 + posts * 0.4);
 }
 
 function contentScore(data) {
   const posts = {
-    '5篇以上': 100,
-    '3~4篇': 80,
-    '1~2篇': 60,
-    '0篇': 20,
+    '5篇以上': 80,
+    '3~4篇': 60,
+    '1~2篇': 35,
+    '0篇': 0,
   }[data.weeklyPosts] ?? 0;
   const video = {
     '每週都有': 100,
-    '偶爾會拍': 70,
-    '很少拍': 40,
+    '偶爾會拍': 50,
+    '很少拍': 20,
     '完全沒有': 0,
   }[data.shortVideo] ?? 0;
-  return Math.round(posts * 0.4 + video * 0.6);
+  return Math.round(posts * 0.35 + video * 0.65);
 }
 
 function digitalGrade(score) {
   if (score >= 85) return '優秀';
   if (score >= 70) return '良好';
-  if (score >= 50) return '待改善';
-  return '薄弱';
+  if (score >= 40) return '待改善';
+  return '偏弱';
 }
 
 function weights(type) {
@@ -191,8 +191,10 @@ export function calculateDiagnosis(data) {
   const hrCost = sum(data, ['managerSalary','staffSalary','laborInsurance','bonus','otherHR']);
   const storeCost = sum(data, ['rent','utilities','internetPhone','posFee','cleaning','misc']);
   const adCost = sum(data, ['metaAds','googleAds','lineAds','kol','creative','otherAds']);
+  const adServiceFee = adCost * 0.015;
+  const adTotalCost = adCost + adServiceFee;
   const paymentFee = n(data.nonCashPayment) * 0.03;
-  const operatingExpense = hrCost + storeCost + adCost + paymentFee;
+  const operatingExpense = hrCost + storeCost + adTotalCost + paymentFee;
   const grossProfit = revenue - directCost;
   const netProfit = grossProfit - operatingExpense;
 
@@ -213,10 +215,10 @@ export function calculateDiagnosis(data) {
   const referralRate = rate(referralCustomers, totalCustomers);
   const hrRate = rate(hrCost, revenue);
   const rentRate = rate(n(data.rent), revenue);
-  const adRate = rate(adCost, revenue);
+  const adRate = rate(adTotalCost, revenue);
   const paymentFeeRate = rate(paymentFee, revenue);
-  const cpa = adLeads ? adCost / adLeads : 0;
-  const roas = adCost ? revenue / adCost : 0;
+  const cpa = deals ? adTotalCost / deals : 0;
+  const roas = adTotalCost ? revenue / adTotalCost : 0;
   const bookingRate = rate(bookings, adLeads);
   const visitRate = rate(visits, bookings);
   const dealRate = rate(deals, visits);
@@ -224,7 +226,7 @@ export function calculateDiagnosis(data) {
   const customerScore = customerScore10(businessType, newRate, returningRate, referralRate);
   const sScore = socialScore(data);
   const content = contentScore(data);
-  const digital = Math.round((sScore + content) / 2);
+  const digital = Math.round(sScore * 0.45 + content * 0.55);
   const w = weights(businessType);
 
   const grossLowTarget = threshold(businessType, {'個人工作室':0.60,'小型店面':0.55,'多人店面':0.50,'多店/連鎖':0.45}, 0.55);
@@ -325,8 +327,8 @@ export function calculateDiagnosis(data) {
     },
     funnelHealth: {
       paymentFeeRate,
-      cpaLabel: adLeads ? formatSafe(cpa) : '未投放廣告',
-      roasLabel: adCost ? roas.toFixed(2) : '未投放廣告',
+      cpaLabel: adTotalCost ? (deals ? formatSafe(cpa) : '未成交') : '未投放廣告',
+      roasLabel: adTotalCost ? roas.toFixed(2) : '未投放廣告',
       bookingRate,
       visitRate,
       dealRate,
