@@ -1,5 +1,5 @@
 const GOOGLE_FORM_ACTION =
-  'https://docs.google.com/forms/d/e/1FAIpQLSdhzTKW4jMkBPbQ58tJ2UJHQP2XNjwfJyD5MowF6FCc-dZhhA/formResponse';
+  'https://docs.google.com/forms/d/e/1FAIpQLSdhzTKW4jMkBPbQ58tJ2UJHQP2XNjwfJyD5MowF6FCc-dZhhA/viewform?usp=preview';
 
 const FIELD_MAP = {
   storeName: 'entry.1083752353',
