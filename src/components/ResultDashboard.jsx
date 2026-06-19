@@ -194,11 +194,13 @@ export default function ResultDashboard({ result, formData = {}, onRestart }) {
             </div>
           </Section>
 
-          <Section title="第四章｜轉換漏斗與廣告效率" intro="這裡用來看廣告與名單是否有效，不代表 PFM 鼓勵依賴廣告。">
+          <Section
+  title="第四章｜轉換漏斗與廣告效率" intro="這裡用來判斷廣告是否真正帶來成交與營收，不代表 PFM 鼓勵依賴廣告，而是協助你看清每一筆廣告成本是否值得。"
+>>
             <div className="metric-grid-v12 six">
-              <MetricCard label="CPA" value={result.cpa} />
-              <MetricCard label="ROAS" value={result.roas} />
-              <MetricCard label="金流手續費率" value={result.paymentFeeRate} />
+              <MetricCard label="CPA" value={result.cpa} sub="每成交一位客人的廣告總成本"/>
+              <MetricCard label="ROAS" value={result.roas} sub="每 1 元廣告成本創造的營收倍數"/>
+              <MetricCard label="金流手續費率" value={result.paymentFeeRate} sub="非現金收款平台成本占營收比例"/>
             </div>
           </Section>
 
