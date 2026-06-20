@@ -405,3 +405,74 @@
     padding: 36px 28px !important;
   }
 }
+/* =========================
+   第六章 升級版
+========================= */
+
+.roadmap-step-card{
+  background:#FFFFFF;
+  border:1px solid #E9D8B6;
+  border-radius:28px;
+  padding:32px;
+  margin-bottom:24px;
+}
+
+.roadmap-step-card span{
+  color:#D6A746;
+  font-weight:700;
+  letter-spacing:1px;
+}
+
+.roadmap-step-card h3{
+  margin-top:12px;
+  margin-bottom:12px;
+  font-size:32px;
+  color:#264A43;
+}
+
+.roadmap-step-card p{
+  color:#55636A;
+  line-height:1.8;
+}
+
+.roadmap-action-card{
+  background:#264A43;
+  color:#FFF;
+  border-radius:32px;
+  padding:48px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:32px;
+}
+
+.roadmap-copy{
+  flex:1;
+}
+
+.roadmap-copy h3{
+  font-size:32px;
+  margin-bottom:16px;
+}
+
+.roadmap-copy p{
+  line-height:2;
+  opacity:0.92;
+}
+
+.roadmap-cta{
+  flex-shrink:0;
+}
+
+.roadmap-cta .btn{
+  min-width:260px;
+}
+
+@media(max-width:900px){
+
+  .roadmap-action-card{
+    flex-direction:column;
+    text-align:center;
+  }
+
+}
