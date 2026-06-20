@@ -4,8 +4,6 @@ export default function HomePage({ onStart }) {
   return (
     <main>
       <section className="hero">
-        <div className="hero-watermark">Profit Flow Management</div>
-
         <div className="hero-copy">
           <p className="eyebrow">Profit Flow Management</p>
           <h1>你的店真的有賺錢嗎？</h1>
@@ -55,7 +53,6 @@ export default function HomePage({ onStart }) {
       </section>
 
       <section className="final-cta">
-        <div className="cta-watermark">PFM</div>
         <h2>不要再靠感覺經營，開始用數據看懂你的店。</h2>
         <button className="btn" onClick={onStart}>立即開始 PFM 美業獲利健檢</button>
       </section>
