@@ -323,32 +323,14 @@ export default function ResultDashboard({ result, formData = {}, onRestart }) {
             </div>
           </Section>
 
-         <Section title="第六章｜90天優先改善路徑">
-  <div className="roadmap-step-card">
-    <span>STEP 1</span>
+<Section title="第六章｜90天優先改善路徑">
+  <StepCards items={actions} />
 
-    <h3>{display(result.priority1)}</h3>
-
+  <div className="cta-panel-v12">
     <p>{display(result.nextAction)}</p>
-  </div>
-
-  <div className="roadmap-action-card">
-    <div className="roadmap-copy">
-      <h3>下一階段成長建議</h3>
-
-      <p>{display(result.consultantComment)}</p>
-    </div>
-
-    <div className="roadmap-cta">
-      <a
-        href={BOOKING_URL || '#'}
-        target="_blank"
-        rel="noreferrer"
-        className="btn"
-      >
-        {display(result.bookingText, '取得專屬獲利改善藍圖')}
-      </a>
-    </div>
+    <a className="btn" href={BOOKING_URL || '#'} target="_blank" rel="noreferrer">
+      {display(result.bookingText, '預約 PFM 一對一診斷')}
+    </a>
   </div>
 </Section>
 
