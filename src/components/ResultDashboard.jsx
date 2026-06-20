@@ -266,43 +266,59 @@ export default function ResultDashboard({ result, formData = {}, onRestart }) {
   title="第四章｜轉換漏斗與廣告效率"
   intro="這裡用來判斷廣告是否真正帶來成交與營收，不代表 PFM 鼓勵依賴廣告，而是協助你看清每一筆廣告成本是否值得。"
 >
-  <div className="ad-performance-layout">
-
-    <div className="ad-metric-row">
-
-      <MetricCard
-        label="CPA"
-        value={result.cpa}
-        sub="每成交一位客人的廣告總成本"
-      />
-
-      <MetricCard
-        label="ROAS"
-        value={result.roas}
-        sub="每 1 元廣告成本創造的營收倍數"
-      />
-
-      <MetricCard
-        label="金流手續費率"
-        value={result.paymentFeeRate}
-        sub="非現金收款平台成本占營收比例"
-      />
-
+  <div
+    style={{
+      display: 'grid',
+      gridTemplateColumns: '1fr',
+      gap: '24px',
+    }}
+  >
+    <div
+      className="metric-grid-v12"
+      style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(3, minmax(220px, 1fr))',
+        gap: '20px',
+      }}
+    >
+      <MetricCard label="CPA" value={result.cpa} sub="每成交一位客人的廣告總成本" />
+      <MetricCard label="ROAS" value={result.roas} sub="每 1 元廣告成本創造的營收倍數" />
+      <MetricCard label="金流手續費率" value={result.paymentFeeRate} sub="非現金收款平台成本占營收比例" />
     </div>
 
-    <div className="ad-analysis-card">
+    <div
+      className={`pfm-card tone-${statusTone(roasLevel)}`}
+      style={{
+        padding: '32px 36px',
+        borderRadius: '24px',
+      }}
+    >
+      <span style={{ color: '#D6A746', fontSize: '15px' }}>
+        廣告效率評級
+      </span>
 
-      <div className="analysis-header">
-        <span>廣告效率評級</span>
-        <strong>{roasLevel}</strong>
-      </div>
+      <strong
+        style={{
+          display: 'block',
+          fontSize: '36px',
+          lineHeight: 1.2,
+          marginTop: '12px',
+          marginBottom: '16px',
+        }}
+      >
+        {roasLevel}
+      </strong>
 
-      <p>
+      <p
+        style={{
+          lineHeight: 1.9,
+          margin: 0,
+          maxWidth: '880px',
+        }}
+      >
         {roasInsight}
       </p>
-
     </div>
-
   </div>
 </Section>
 
