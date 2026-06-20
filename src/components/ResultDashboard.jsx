@@ -144,12 +144,38 @@ export default function ResultDashboard({ result, formData = {}, onRestart }) {
           </div>
         </div>
 
-        <div className="stage-panel-v12">
-          <span>店家成長階段</span>
-          <strong>{display(result.growthStage)}</strong>
-          <div className="score-ring-v12">{display(result.growthScore)}</div>
-          <p>綜合分數</p>
-        </div>
+        <div
+  className="stage-panel-v12"
+  style={{
+    position: 'relative',
+    overflow: 'hidden',
+  }}
+>
+  <div
+    style={{
+      position: 'absolute',
+      right: '18px',
+      top: '-18px',
+      fontSize: '110px',
+      fontWeight: 800,
+      lineHeight: 1,
+      color: '#2F4A42',
+      opacity: 0.025,
+      pointerEvents: 'none',
+      userSelect: 'none',
+      zIndex: 0,
+    }}
+  >
+    PFM
+  </div>
+
+  <div style={{ position: 'relative', zIndex: 1 }}>
+    <span>店家成長階段</span>
+    <strong>{display(result.growthStage)}</strong>
+    <div className="score-ring-v12">{display(result.growthScore)}</div>
+    <p>綜合分數</p>
+  </div>
+</div>
       </section>
 
       <Section title="四大核心指標" intro="先看最直接影響獲利與經營穩定度的四個指標。">
