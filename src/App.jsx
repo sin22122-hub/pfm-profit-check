@@ -65,8 +65,9 @@ export default function App() {
       const sheetResult = await fetchDashboardData(submitResult.submissionId);
 
       if (!sheetResult || !sheetResult.totalRevenue) {
-        alert('目前沒有取得有效健檢結果，請確認資料是否完整。');
-        return;
+        alert(`請先完成以下必要欄位：\n\n${missingFields.join('\n')}`);
+console.log('PFM missingFields:', missingFields);
+console.log('PFM submitted data:', data);
       }
 
       setFormData({
