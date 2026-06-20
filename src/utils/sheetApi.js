@@ -26,8 +26,10 @@ export function fetchDashboardData(submissionId) {
     window[callbackName] = (response) => {
       cleanup();
 
+      console.log('PFM Apps Script response:', response);
+
       if (!response || response.ok !== true) {
-        reject(new Error('讀取 Dashboard_Data 失敗'));
+        reject(new Error(response?.message || '讀取 Dashboard_Data 失敗'));
         return;
       }
 
