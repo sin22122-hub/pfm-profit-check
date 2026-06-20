@@ -17,6 +17,7 @@ export default function App() {
   const startAssessment = () => {
     setView('form');
     setResult(null);
+    setFormData({});
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -57,19 +58,22 @@ export default function App() {
     try {
       setIsSubmitting(true);
 
-      await submitToGoogleForm(data);
+      const submitResult = await submitToGoogleForm(data);
 
-      // 等待 Google Sheet 完成寫入與公式更新
       await new Promise((resolve) => setTimeout(resolve, 1800));
 
-      const sheetResult = await fetchDashboardData();
+      const sheetResult = await fetchDashboardData(submitResult.submissionId);
 
       if (!sheetResult || !sheetResult.totalRevenue) {
         alert('目前沒有取得有效健檢結果，請確認資料是否完整。');
         return;
       }
 
-      setFormData(data);
+      setFormData({
+        ...data,
+        submissionId: submitResult.submissionId,
+      });
+
       setResult(sheetResult);
       setView('result');
       window.scrollTo({ top: 0, behavior: 'smooth' });
