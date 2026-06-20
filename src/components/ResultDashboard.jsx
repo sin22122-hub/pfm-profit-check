@@ -323,49 +323,34 @@ export default function ResultDashboard({ result, formData = {}, onRestart }) {
             </div>
           </Section>
 
-          <Section title="第六章｜90天優先改善路徑">
-            <StepCards items={actions} />
+         <Section title="第六章｜90天優先改善路徑">
+  <div className="roadmap-step-card">
+    <span>STEP 1</span>
 
-           <div className="roadmap-step-card">
+    <h3>{display(result.priority1)}</h3>
 
-  <span>STEP 1</span>
-
-  <h3>
-    {display(result.priority1)}
-  </h3>
-
-  <p>
-    {display(result.nextAction)}
-  </p>
-
-</div>
-
-<div className="roadmap-action-card">
-
-  <div className="roadmap-copy">
-
-    <h3>下一階段成長建議</h3>
-
-    <p>
-      {display(result.consultantComment)}
-    </p>
-
+    <p>{display(result.nextAction)}</p>
   </div>
 
-  <div className="roadmap-cta">
+  <div className="roadmap-action-card">
+    <div className="roadmap-copy">
+      <h3>下一階段成長建議</h3>
 
-    <a
-      href="https://lin.ee/你的LINE"
-      target="_blank"
-      rel="noreferrer"
-      className="btn"
-    >
-      取得專屬獲利改善藍圖
-    </a>
+      <p>{display(result.consultantComment)}</p>
+    </div>
 
+    <div className="roadmap-cta">
+      <a
+        href={BOOKING_URL || '#'}
+        target="_blank"
+        rel="noreferrer"
+        className="btn"
+      >
+        {display(result.bookingText, '取得專屬獲利改善藍圖')}
+      </a>
+    </div>
   </div>
-
-</div>
+</Section>
       )}
 
       <div className="result-actions-v12">
