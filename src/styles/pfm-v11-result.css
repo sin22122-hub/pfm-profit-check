@@ -568,3 +568,24 @@
     display: none !important;
   }
 }
+.pdf-exporting .no-print {
+  display: none !important;
+}
+
+.pdf-exporting #growth-blueprint {
+  width: 1180px !important;
+  max-width: 1180px !important;
+  margin: 0 auto !important;
+  background: #F7F3EC !important;
+}
+
+.pdf-exporting .pfm-section,
+.pdf-exporting .hidden-cost-card-v12,
+.pdf-exporting .blueprint-hero-v12 {
+  break-inside: avoid;
+  page-break-inside: avoid;
+}
+
+.pdf-exporting .metric-grid-v12 {
+  grid-template-columns: repeat(3, 1fr) !important;
+}
