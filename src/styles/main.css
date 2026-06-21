@@ -1816,3 +1816,75 @@ select:focus {
     display: none;
   }
 }
+/* =========================================================
+   PFM Luxury Home Rebuild
+   貼到 src/styles/main.css 最底部
+========================================================= */
+
+.site-header {
+  height: 76px !important;
+  padding: 0 40px !important;
+  background: linear-gradient(90deg, rgba(14,0,3,.97), rgba(43,5,11,.94), rgba(14,0,3,.97)) !important;
+  border-bottom: 1px solid rgba(216,174,78,.26) !important;
+  box-shadow: 0 12px 36px rgba(0,0,0,.22) !important;
+  backdrop-filter: blur(16px) !important;
+}
+.brand-mark { width:48px!important; height:48px!important; border-radius:14px!important; background:linear-gradient(145deg,#7a1024,#32050d)!important; color:#e8c56c!important; border:1px solid rgba(216,174,78,.4)!important; box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 12px 28px rgba(0,0,0,.26)!important; }
+.brand strong { color:#e8c56c!important; }
+.brand span { color:rgba(255,255,255,.72)!important; }
+.site-header .btn { background:linear-gradient(145deg,#f1d578,#b98928)!important; color:#260409!important; box-shadow:inset 0 1px 0 rgba(255,255,255,.48),0 12px 30px rgba(216,174,78,.2)!important; }
+
+.pfm-home-luxury { min-height:100vh; color:#fff; background:radial-gradient(circle at 78% 12%, rgba(240,208,114,.16), transparent 25%), radial-gradient(circle at 36% 18%, rgba(122,16,36,.24), transparent 26%), linear-gradient(135deg,#100003 0%,#440711 43%,#230206 100%); overflow:hidden; }
+.pfm-lux-hero { max-width:1280px; min-height:620px; margin:0 auto; padding:82px 36px 46px; display:grid; grid-template-columns:.94fr 1.06fr; gap:56px; align-items:center; position:relative; }
+.pfm-lux-hero::before { content:"PFM"; position:absolute; left:44%; top:86px; font-family:Georgia,serif; font-size:215px; font-weight:900; color:rgba(255,255,255,.055); pointer-events:none; }
+.pfm-lux-hero::after { content:""; position:absolute; right:72px; top:42px; width:1px; height:520px; background:linear-gradient(to bottom,transparent,rgba(216,174,78,.82),transparent); transform:rotate(34deg); opacity:.7; }
+.pfm-lux-copy { position:relative; z-index:2; }
+.pfm-lux-eyebrow { margin:0 0 14px; color:#ddb95d; font-size:18px; font-weight:800; letter-spacing:.08em; }
+.pfm-lux-copy h1 { margin:0 0 22px; color:#fff; font-size:clamp(42px,5.1vw,68px); line-height:1.08; letter-spacing:-.045em; text-shadow:0 18px 40px rgba(0,0,0,.26); }
+.pfm-lux-copy h1 span { display:block; margin-top:8px; color:#e3bd5d; }
+.pfm-lux-lead { max-width:560px; margin:0 0 28px; color:rgba(255,255,255,.84); font-size:18px; line-height:1.86; }
+
+.pfm-gold-badge { width:54px; height:54px; display:inline-grid; place-items:center; flex:0 0 54px; border-radius:50%; color:#f6d97c; background:radial-gradient(circle at 32% 25%,rgba(255,241,174,.7),transparent 0 18%,rgba(122,16,36,.9) 19% 100%),linear-gradient(145deg,#7a1024,#2d040a); border:1px solid rgba(216,174,78,.48); box-shadow:inset 0 1px 0 rgba(255,255,255,.15),inset 0 -8px 18px rgba(0,0,0,.28),0 12px 24px rgba(0,0,0,.2),0 0 20px rgba(216,174,78,.12); }
+.pfm-gold-badge svg { width:31px; height:31px; filter:drop-shadow(0 2px 2px rgba(0,0,0,.35)); }
+.pfm-lux-icon-row { display:flex; flex-wrap:wrap; gap:24px; margin:0 0 28px; }
+.pfm-lux-icon-row > div { display:grid; grid-template-columns:46px auto; align-items:center; gap:10px; color:#e8c56c; font-weight:900; white-space:nowrap; }
+.pfm-lux-icon-row .pfm-gold-badge { width:46px; height:46px; border-radius:13px; background:linear-gradient(145deg,#f4d87c,#b98928); color:#4a0915; }
+.pfm-lux-icon-row .pfm-gold-badge svg { width:28px; height:28px; }
+.pfm-lux-main-btn { min-width:240px; padding:15px 30px!important; font-size:17px!important; background:linear-gradient(145deg,#f2d375,#b98928)!important; color:#28050a!important; box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 18px 40px rgba(216,174,78,.2)!important; }
+.pfm-lux-scope { max-width:600px; margin:18px 0 0; color:rgba(255,255,255,.74); font-size:14px; line-height:1.8; }
+
+.pfm-lux-book-area { position:relative; z-index:2; min-height:540px; display:flex; justify-content:center; align-items:center; perspective:1400px; }
+.pfm-lux-book-stage { position:absolute; bottom:28px; width:520px; height:96px; border-radius:50%; background:radial-gradient(ellipse,rgba(216,174,78,.24),rgba(80,8,20,.55) 55%,transparent 73%); border:1px solid rgba(216,174,78,.22); box-shadow:0 22px 60px rgba(0,0,0,.24); }
+.pfm-lux-book { width:350px; min-height:500px; padding:46px 38px; position:relative; transform:rotateY(-12deg) rotateX(2deg); border-radius:4px 16px 16px 4px; background:linear-gradient(115deg,rgba(255,255,255,.10),transparent 31%),linear-gradient(145deg,#841126 0%,#3a050d 78%); border:1px solid rgba(216,174,78,.48); box-shadow:34px 32px 90px rgba(0,0,0,.46),inset -15px 0 0 rgba(255,255,255,.10),inset 2px 0 0 rgba(216,174,78,.20); }
+.pfm-lux-book::before { content:""; position:absolute; right:-20px; top:8px; width:25px; height:calc(100% - 16px); border-radius:0 12px 12px 0; background:repeating-linear-gradient(90deg,#f6ebd6 0 4px,#c6ad82 4px 6px,#f0e1c5 6px 10px); box-shadow:inset 7px 0 12px rgba(0,0,0,.18),10px 10px 30px rgba(0,0,0,.2); }
+.pfm-lux-book-shine { position:absolute; inset:-80px auto auto 55%; width:150px; height:650px; transform:rotate(23deg); background:linear-gradient(to bottom,transparent,rgba(255,255,255,.16),transparent); pointer-events:none; }
+.pfm-lux-book-logo { position:relative; color:#e8c56c; font-family:Georgia,serif; font-size:62px; font-weight:900; line-height:.9; }
+.pfm-lux-book-sub { position:relative; color:#e8c56c; font-size:12px; font-style:italic; }
+.pfm-lux-book h2 { position:relative; color:#e8c56c; margin:38px 0 28px; font-size:28px; line-height:1.25; }
+.pfm-lux-radar { width:190px; height:132px; margin:0 auto 24px; position:relative; }
+.radar-grid,.radar-fill { position:absolute; clip-path:polygon(50% 0%,100% 36%,82% 100%,18% 100%,0 36%); }
+.radar-grid { inset:18px 32px; border:1px solid rgba(216,174,78,.72); background:linear-gradient(72deg,transparent 49%,rgba(216,174,78,.22) 50%,transparent 51%),linear-gradient(-72deg,transparent 49%,rgba(216,174,78,.22) 50%,transparent 51%); }
+.radar-fill { inset:40px 55px 32px; background:rgba(216,174,78,.36); }
+.pfm-lux-radar span { position:absolute; color:rgba(255,255,255,.72); font-size:10px; }
+.pfm-lux-radar span:nth-child(3){top:0;left:66px}.pfm-lux-radar span:nth-child(4){right:0;top:52px}.pfm-lux-radar span:nth-child(5){right:32px;bottom:0}.pfm-lux-radar span:nth-child(6){left:0;top:52px}.pfm-lux-radar span:nth-child(7){left:56px;bottom:4px}
+.pfm-lux-score { width:116px; height:116px; margin:0 auto 24px; border-radius:50%; border:6px solid rgba(216,174,78,.92); display:grid; place-items:center; color:#fff; }
+.pfm-lux-score small { color:#e8c56c; font-size:11px; }.pfm-lux-score strong { font-size:38px; line-height:.65; }.pfm-lux-score em { color:rgba(255,255,255,.75); font-style:normal; }.pfm-lux-book p { color:#e8c56c; text-align:center; font-weight:900; margin:0; }
+
+.pfm-lux-pain { max-width:1180px; margin:-4px auto 42px; padding:24px 26px 30px; border-radius:22px; border:1px solid rgba(216,174,78,.28); background:rgba(64,5,14,.52); }
+.pfm-lux-pain h2 { margin:0 0 22px; text-align:center; color:#e8c56c; font-size:25px; }
+.pfm-lux-pain-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
+.pfm-lux-pain-grid article { min-height:126px; padding:22px 20px; display:grid; grid-template-columns:54px 1fr; gap:14px; align-items:start; border-radius:16px; background:linear-gradient(145deg,#fff9ed,#f0e2cc); border:1px solid rgba(216,174,78,.28); box-shadow:0 20px 44px rgba(0,0,0,.13); }
+.pfm-lux-pain-grid p { margin:0; color:#4a0915; font-size:17px; line-height:1.72; }.pfm-lux-pain-grid strong { display:block; }
+
+.pfm-lux-preview { max-width:1180px; margin:0 auto 32px; padding:0 28px; }
+.pfm-lux-title { margin:0 0 30px; display:flex; align-items:center; justify-content:center; gap:18px; color:#e8c56c; font-size:30px; font-weight:900; letter-spacing:.12em; }
+.pfm-lux-title span { width:90px; height:1px; background:rgba(216,174,78,.55); }
+.pfm-lux-preview-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
+.pfm-lux-preview-grid article { min-height:166px; padding:26px 18px; text-align:center; border-radius:17px; border:1px solid rgba(216,174,78,.36); background:linear-gradient(180deg,rgba(125,12,30,.62),rgba(54,5,13,.96)); box-shadow:0 22px 52px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.05); }
+.pfm-lux-preview-grid .pfm-gold-badge { margin-bottom:12px; }.pfm-lux-preview-grid h3 { margin:0 0 8px; color:#fff; font-size:22px; }.pfm-lux-preview-grid p { margin:0; color:rgba(255,255,255,.74); line-height:1.65; }
+
+.pfm-lux-proof { max-width:1180px; margin:0 auto 62px; padding:26px 40px; display:flex; justify-content:center; align-items:center; gap:42px; border-radius:18px; border:1px solid rgba(216,174,78,.30); background:linear-gradient(180deg,rgba(100,9,24,.48),rgba(47,4,12,.88)); text-align:center; }
+.pfm-lux-proof .laurel { color:#e8c56c; font-size:54px; font-family:Georgia,serif; opacity:.82; }.pfm-lux-proof h2 { margin:0 0 8px; color:#e8c56c; font-size:28px; }.pfm-lux-proof p { margin:0; color:rgba(255,255,255,.72); }
+.premium-final-cta,.final-cta { display:none!important; }
+
+@media (max-width:960px){.site-header{padding:0 18px!important}.pfm-lux-hero{min-height:auto;grid-template-columns:1fr;padding:58px 22px 40px;gap:34px}.pfm-lux-hero::after{display:none}.pfm-lux-icon-row,.pfm-lux-pain-grid,.pfm-lux-preview-grid{grid-template-columns:1fr}.pfm-lux-book{width:min(330px,88vw);transform:none}.pfm-lux-proof{margin-inline:18px;gap:18px}}
