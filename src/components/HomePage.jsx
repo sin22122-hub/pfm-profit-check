@@ -146,31 +146,13 @@ export default function HomePage({ onStart }) {
             適用：美容、美甲、美睫、美髮、紋繡、SPA等項目之工作室、小型店面與連鎖經營。
           </p>
         </div>
-
-        <div className="pfm-lux-book-area">
-          <div className="pfm-lux-book-stage" />
-          <div className="pfm-lux-book">
-            <div className="pfm-lux-book-shine" />
-            <div className="pfm-lux-book-logo">PFM</div>
-            <div className="pfm-lux-book-sub">Profit Flow Management</div>
-            <h2>美業獲利健檢報告</h2>
-
-            <div className="pfm-book-focus-list">
-              <span>獲利結構</span>
-              <span>成本控管</span>
-              <span>客戶經營</span>
-              <span>成長路徑</span>
-            </div>
-
-            <div className="pfm-lux-score">
-              <small>綜合分數</small>
-              <strong>72</strong>
-              <em>/100</em>
-            </div>
-
-            <p>專屬經營診斷報告</p>
-          </div>
-        </div>
+<div className="pfm-lux-book-area">
+  <img
+    className="pfm-book-3d-img"
+    src="/pfm-book-3d.webp"
+    alt="PFM 美業獲利健檢報告"
+  />
+</div>
       </section>
 
       <section className="pfm-lux-pain" id="pfm-about">
