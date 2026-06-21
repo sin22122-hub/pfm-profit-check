@@ -2390,3 +2390,19 @@ select:focus {
     width: 48px;
   }
 }
+.pfm-book-3d-img {
+  width: min(520px, 100%) !important;
+  height: auto !important;
+  display: block !important;
+  object-fit: contain !important;
+  filter: drop-shadow(0 28px 48px rgba(0, 0, 0, 0.42));
+}
+
+.pfm-lux-book,
+.pfm-lux-book-stage,
+.pfm-lux-book-shine,
+.pfm-lux-radar,
+.pfm-book-focus-list,
+.pfm-lux-score {
+  display: none !important;
+}
