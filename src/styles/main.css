@@ -1,12 +1,18 @@
 @import './pfm-v11-result.css';
+
 :root {
   --cream: #F8F4EC;
-  --green: #31463D;
-  --gold: #D6A746;
-  --gray: #4B5563;
+  --ivory: #FFFCF6;
+  --burgundy: #7A1024;
+  --burgundy-dark: #4A0915;
+  --burgundy-soft: #F7EDEF;
+  --gold: #C89B3C;
+  --gold-soft: #E7C878;
+  --ink: #2B2B2B;
+  --gray: #60646B;
   --white: #FFFFFF;
-  --border: rgba(49, 70, 61, 0.14);
-  --shadow: 0 18px 60px rgba(49, 70, 61, 0.08);
+  --border: rgba(122, 16, 36, 0.14);
+  --shadow: 0 22px 70px rgba(74, 9, 21, 0.10);
 }
 
 * {
@@ -15,8 +21,10 @@
 
 body {
   margin: 0;
-  background: var(--cream);
-  color: var(--green);
+  background:
+    radial-gradient(circle at top right, rgba(200,155,60,.14), transparent 34%),
+    linear-gradient(180deg, #FFFCF6 0%, #F8F4EC 100%);
+  color: var(--ink);
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Noto Sans TC", "Microsoft JhengHei", sans-serif;
 }
 
@@ -25,17 +33,17 @@ button {
 }
 
 .site-header {
-  height: 76px;
+  height: 78px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 32px;
-  border-bottom: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.9);
+  padding: 0 34px;
+  border-bottom: 1px solid rgba(200,155,60,.24);
+  background: rgba(255, 252, 246, 0.92);
   position: sticky;
   top: 0;
   z-index: 20;
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(14px);
 }
 
 .brand {
@@ -45,14 +53,19 @@ button {
 }
 
 .brand-mark {
-  width: 46px;
-  height: 46px;
+  width: 48px;
+  height: 48px;
   border-radius: 14px;
-  background: var(--green);
-  color: var(--gold);
+  background: linear-gradient(135deg, var(--burgundy-dark), var(--burgundy));
+  color: var(--gold-soft);
   display: grid;
   place-items: center;
   font-weight: 900;
+  box-shadow: 0 12px 28px rgba(74, 9, 21, 0.18);
+}
+
+.brand strong {
+  color: var(--burgundy-dark);
 }
 
 .brand span {
@@ -62,24 +75,25 @@ button {
 }
 
 .btn {
-  background: var(--gold);
+  background: linear-gradient(135deg, #D8AE4E, var(--gold));
   border: 0;
   border-radius: 999px;
-  padding: 12px 20px;
-  font-weight: 800;
-  color: var(--green);
+  padding: 12px 22px;
+  font-weight: 900;
+  color: var(--burgundy-dark);
   cursor: pointer;
-  box-shadow: 0 10px 24px rgba(214, 167, 70, 0.22);
+  box-shadow: 0 12px 28px rgba(200, 155, 60, 0.26);
 }
 
 .btn.small {
-  padding: 10px 16px;
+  padding: 10px 18px;
 }
 
 .btn.secondary {
   background: #fff;
   box-shadow: none;
   border: 1px solid var(--border);
+  color: var(--burgundy);
 }
 
 .btn:disabled {
@@ -88,19 +102,21 @@ button {
 }
 
 .hero {
-  max-width: 1120px;
+  max-width: 1160px;
   margin: auto;
   display: grid;
   grid-template-columns: 1.1fr .9fr;
-  gap: 36px;
-  padding: 92px 24px 70px;
+  gap: 42px;
+  padding: 96px 24px 76px;
   align-items: center;
 }
 
 .hero h1 {
-  font-size: clamp(44px, 7vw, 76px);
-  line-height: 1;
-  margin: 0 0 20px;
+  font-size: clamp(46px, 7vw, 78px);
+  line-height: 1.04;
+  margin: 0 0 22px;
+  color: var(--burgundy-dark);
+  letter-spacing: -0.04em;
 }
 
 .lead,
@@ -112,7 +128,7 @@ button {
 
 .micro {
   font-size: 14px !important;
-  margin-top: 14px;
+  margin-top: 16px;
 }
 
 .eyebrow {
@@ -133,8 +149,8 @@ button {
 .kpi-card,
 .list-card,
 .feature-card {
-  background: rgba(255,255,255,.78);
-  border: 1px solid #e4dccd;
+  background: rgba(255,255,255,.82);
+  border: 1px solid rgba(122,16,36,.12);
   border-radius: 28px;
   padding: 28px;
   box-shadow: var(--shadow);
@@ -142,6 +158,23 @@ button {
 
 .mock-card {
   min-height: 320px;
+  position: relative;
+  overflow: hidden;
+}
+
+.mock-card::before {
+  content: "PFM";
+  position: absolute;
+  right: 22px;
+  top: 16px;
+  font-size: 96px;
+  font-weight: 900;
+  color: rgba(122,16,36,.035);
+  pointer-events: none;
+}
+
+.mock-card h2 {
+  color: var(--burgundy-dark);
 }
 
 .mock-list {
@@ -152,14 +185,15 @@ button {
 }
 
 .section {
-  max-width: 1120px;
+  max-width: 1160px;
   margin: auto;
   padding: 42px 24px;
 }
 
 .section h2,
 .final-cta h2 {
-  font-size: 32px;
+  font-size: 34px;
+  color: var(--burgundy-dark);
 }
 
 .pain-grid,
@@ -175,7 +209,7 @@ button {
 
 .pain-grid div,
 .feature-card {
-  background: white;
+  background: rgba(255,255,255,.9);
   border: 1px solid var(--border);
   padding: 22px;
   border-radius: 20px;
@@ -183,21 +217,32 @@ button {
   line-height: 1.6;
 }
 
+.feature-card {
+  color: var(--burgundy-dark);
+  font-weight: 800;
+}
+
 .final-cta {
   max-width: 1120px;
   margin: 40px auto 80px;
-  padding: 48px 24px;
+  padding: 52px 24px;
   text-align: center;
-  background: var(--green);
+  background:
+    linear-gradient(135deg, rgba(122,16,36,.95), rgba(74,9,21,.98));
   color: white;
-  border-radius: 32px;
+  border-radius: 34px;
+  box-shadow: 0 28px 80px rgba(74, 9, 21, 0.18);
+}
+
+.final-cta h2 {
+  color: white;
 }
 
 .form-page,
 .dashboard {
   max-width: 1180px;
   margin: auto;
-  padding: 40px 24px 80px;
+  padding: 44px 24px 80px;
 }
 
 .form-layout {
@@ -221,7 +266,7 @@ button {
 
 .progress-track {
   height: 10px;
-  background: rgba(49, 70, 61, 0.12);
+  background: rgba(122, 16, 36, 0.10);
   border-radius: 99px;
   overflow: hidden;
   margin: 14px 0;
@@ -229,7 +274,7 @@ button {
 
 .progress-bar {
   height: 100%;
-  background: var(--gold);
+  background: linear-gradient(90deg, var(--burgundy), var(--gold));
   border-radius: 99px;
 }
 
@@ -248,7 +293,7 @@ button {
 }
 
 .live-card strong {
-  color: var(--green);
+  color: var(--burgundy-dark);
 }
 
 .step-list {
@@ -274,21 +319,22 @@ button {
   height: 26px;
   margin-right: 8px;
   border-radius: 50%;
-  background: rgba(49, 70, 61, 0.08);
+  background: rgba(122, 16, 36, 0.08);
 }
 
 .step-list button.active {
-  background: rgba(214, 167, 70, 0.18);
-  color: var(--green);
+  background: rgba(122, 16, 36, 0.10);
+  color: var(--burgundy);
 }
 
 .step-list button.done {
-  color: var(--green);
+  color: var(--burgundy-dark);
 }
 
 .form-shell h1 {
   font-size: 40px;
   margin: 8px 0 10px;
+  color: var(--burgundy-dark);
 }
 
 .form-shell p {
@@ -304,7 +350,8 @@ button {
 
 .field {
   display: block;
-  font-weight: 700;
+  font-weight: 800;
+  color: var(--burgundy-dark);
 }
 
 .field span {
@@ -316,11 +363,18 @@ input,
 select {
   width: 100%;
   padding: 14px 16px;
-  border: 1px solid #ddd;
+  border: 1px solid rgba(122,16,36,.16);
   border-radius: 14px;
   background: white;
   font-size: 16px;
-  color: var(--green);
+  color: var(--burgundy-dark);
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: rgba(200,155,60,.7);
+  box-shadow: 0 0 0 4px rgba(200,155,60,.12);
 }
 
 .checkbox-grid {
@@ -330,7 +384,7 @@ select {
 }
 
 .check-item {
-  border: 1px solid #ddd;
+  border: 1px solid rgba(122,16,36,.16);
   padding: 10px 14px;
   border-radius: 999px;
   background: #fff;
@@ -349,6 +403,7 @@ select {
   margin-top: 28px;
 }
 
+/* 舊版 dashboard 保留，但改成酒紅系 */
 .dashboard-hero {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -356,7 +411,7 @@ select {
 }
 
 .stage-card {
-  background: var(--green);
+  background: linear-gradient(135deg, var(--burgundy-dark), var(--burgundy));
   color: white;
 }
 
@@ -370,8 +425,8 @@ select {
   margin-top: 20px;
   padding: 10px 14px;
   border-radius: 999px;
-  background: rgba(214, 167, 70, 0.18);
-  color: var(--gold);
+  background: rgba(200, 155, 60, 0.18);
+  color: var(--gold-soft);
   font-weight: 900;
 }
 
@@ -389,6 +444,7 @@ select {
 
 .kpi-card strong {
   font-size: 28px;
+  color: var(--burgundy-dark);
 }
 
 .two-col {
@@ -412,8 +468,8 @@ select {
   border-radius: 50%;
   display: grid;
   place-items: center;
-  background: var(--cream);
-  color: var(--gold);
+  background: var(--burgundy-soft);
+  color: var(--burgundy);
   font-weight: 900;
 }
 
@@ -437,7 +493,7 @@ select {
 
 .timeline-item strong {
   display: block;
-  color: var(--gold);
+  color: var(--burgundy);
 }
 
 .consultant-text {
@@ -449,12 +505,92 @@ select {
 
 .cta-panel {
   text-align: center;
-  background: var(--green);
+  background: linear-gradient(135deg, var(--burgundy-dark), var(--burgundy));
   color: white;
 }
 
 .cta-panel .secondary {
   margin-left: 12px;
+}
+
+/* Loading 也改成酒紅系 */
+.pfm-loading-page {
+  min-height: calc(100vh - 88px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 24px;
+  background:
+    radial-gradient(circle at top right, rgba(200,155,60,.16), transparent 34%),
+    #F8F4EC;
+}
+
+.pfm-loading-card {
+  width: min(720px, 100%);
+  background: #ffffff;
+  border: 1px solid rgba(122,16,36,.14);
+  border-radius: 32px;
+  padding: 56px;
+  text-align: center;
+  box-shadow: 0 24px 80px rgba(74, 9, 21, 0.10);
+}
+
+.pfm-loading-mark {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 24px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, var(--burgundy-dark), var(--burgundy));
+  color: var(--gold-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+}
+
+.pfm-loading-card h1 {
+  margin: 12px 0 28px;
+  color: var(--burgundy-dark);
+  font-size: clamp(28px, 4vw, 42px);
+  line-height: 1.25;
+}
+
+.pfm-loading-steps {
+  display: grid;
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.pfm-loading-steps span {
+  padding: 16px 20px;
+  border-radius: 18px;
+  background: #FFFCF6;
+  border: 1px solid rgba(122,16,36,.12);
+  color: var(--gray);
+}
+
+.pfm-loading-steps span:nth-child(1) {
+  animation: loadingPulse 1.5s infinite;
+}
+
+.pfm-loading-steps span:nth-child(2) {
+  animation: loadingPulse 1.5s infinite 0.25s;
+}
+
+.pfm-loading-steps span:nth-child(3) {
+  animation: loadingPulse 1.5s infinite 0.5s;
+}
+
+@keyframes loadingPulse {
+  0%, 100% {
+    opacity: 0.45;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
 }
 
 @media (max-width: 960px) {
