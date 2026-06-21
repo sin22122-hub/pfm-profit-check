@@ -18,8 +18,8 @@ export default function HomePage({ onStart }) {
           </p>
 
           <div className="premium-icons">
-            <span className="icon-diagnosis">專業診斷</span>
-            <span className="icon-data">數據分析</span>
+            <span className="icon-card">專業診斷</span>
+            <span className="icon-bars">數據分析</span>
             <span className="icon-target">精準建議</span>
             <span className="icon-growth">成長路徑</span>
           </div>
@@ -33,28 +33,28 @@ export default function HomePage({ onStart }) {
           </p>
         </div>
 
-        <div className="premium-book-wrap">
+        <div className="premium-book-stage">
           <div className="premium-book">
-            <div className="book-shine" />
-            <p className="book-logo">PFM</p>
-            <span>Profit Flow Management</span>
+            <div className="book-glow" />
+            <div className="book-logo">PFM</div>
+            <div className="book-sub">Profit Flow Management</div>
             <h2>美業獲利健檢報告</h2>
 
             <div className="book-radar">
-              <div className="radar-shape" />
-              <small>獲利能力</small>
-              <small>經營效率</small>
-              <small>客戶經營</small>
-              <small>數位成長</small>
+              <div className="radar-line" />
+              <span>獲利能力</span>
+              <span>經營效率</span>
+              <span>客戶經營</span>
+              <span>數位成長</span>
             </div>
 
             <div className="book-score">
-              <span>綜合分數</span>
+              <small>綜合分數</small>
               <strong>72</strong>
-              <small>/100</small>
+              <em>/100</em>
             </div>
 
-            <p className="book-footer">專屬經營診斷報告</p>
+            <p>專屬經營診斷報告</p>
           </div>
         </div>
       </section>
@@ -63,53 +63,25 @@ export default function HomePage({ onStart }) {
         <h2>明明每天都很忙，為什麼帳戶裡還是沒有錢？</h2>
 
         <div className="premium-pain-grid">
-          <div>
-            <span>營收看起來不錯，</span>
-            <strong>但月底沒有留下多少利潤。</strong>
-          </div>
-          <div>
-            <span>客人一直來，</span>
-            <strong>卻總是留不住。</strong>
-          </div>
-          <div>
-            <span>社群每天更新，</span>
-            <strong>業績卻沒有明顯成長。</strong>
-          </div>
-          <div>
-            <span>不知道問題出在哪，</span>
-            <strong>只能不斷更努力工作。</strong>
-          </div>
+          <div><i>●</i><p>營收看起來不錯，<strong>但月底沒有留下多少利潤。</strong></p></div>
+          <div><i>●</i><p>客人一直來，<strong>卻總是留不住。</strong></p></div>
+          <div><i>●</i><p>社群每天更新，<strong>業績卻沒有明顯成長。</strong></p></div>
+          <div><i>●</i><p>不知道問題出在哪，<strong>只能不斷更努力工作。</strong></p></div>
         </div>
       </section>
 
       <section className="premium-preview">
         <div className="section-title-line">
-          <span></span>
+          <span />
           <h2>診斷預覽</h2>
-          <span></span>
+          <span />
         </div>
 
         <div className="premium-feature-grid">
-          <div>
-            <i className="preview-icon search"></i>
-            <strong>三大問題</strong>
-            <p>找出影響獲利的關鍵阻礙</p>
-          </div>
-          <div>
-            <i className="preview-icon diamond"></i>
-            <strong>三大優勢</strong>
-            <p>發掘你的經營亮點</p>
-          </div>
-          <div>
-            <i className="preview-icon radar"></i>
-            <strong>成長階段</strong>
-            <p>了解目前所在的成長階段</p>
-          </div>
-          <div>
-            <i className="preview-icon chart"></i>
-            <strong>成長機會</strong>
-            <p>量化潛在成長與獲利空間</p>
-          </div>
+          <div><i className="preview-icon search" /><strong>三大問題</strong><p>找出影響獲利的關鍵阻礙</p></div>
+          <div><i className="preview-icon diamond" /><strong>三大優勢</strong><p>發掘你的經營亮點</p></div>
+          <div><i className="preview-icon radar" /><strong>成長階段</strong><p>了解目前所在的成長階段</p></div>
+          <div><i className="preview-icon chart" /><strong>成長機會</strong><p>量化潛在成長與獲利空間</p></div>
         </div>
       </section>
 
