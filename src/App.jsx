@@ -124,7 +124,7 @@ console.log('PFM submitted data:', data);
       </div>
     </div>
   </main>
-)}
+  
       )}
 
       {view === 'result' && result && (
