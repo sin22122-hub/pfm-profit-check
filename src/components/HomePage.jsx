@@ -5,9 +5,36 @@ import dataIcon from '../assets/icons/data-analysis.png';
 import adviceIcon from '../assets/icons/precision-advice.png';
 import roadmapIcon from '../assets/icons/growth-roadmap.png';
 
+const featureIcons = [
+  { src: diagnosisIcon, alt: '專業診斷', label: '專業診斷' },
+  { src: dataIcon, alt: '數據分析', label: '數據分析' },
+  { src: adviceIcon, alt: '精準建議', label: '精準建議' },
+  { src: roadmapIcon, alt: '成長路徑', label: '成長路徑' },
+];
+
+const aspectCards = [
+  {
+    title: '獲利能力分析',
+    text: '掌握營收、毛利與淨利，判斷店裡是不是真的有留下錢。',
+  },
+  {
+    title: '客戶經營洞察',
+    text: '看見新客、回流與介紹客狀況，找出客源穩定度。',
+  },
+  {
+    title: '成本結構檢視',
+    text: '拆解租金、人事、材料、金流與廣告成本，找出獲利黑洞。',
+  },
+  {
+    title: '成長策略建議',
+    text: '依照數據結果，整理出下一步最該優先改善的方向。',
+  },
+];
+
 function PremiumIcon({ src, alt }) {
   return (
     <span className="pfm-premium-icon-wrap">
+      <span className="pfm-premium-icon-glow" />
       <img src={src} alt={alt} className="pfm-premium-icon-img" />
     </span>
   );
@@ -106,7 +133,7 @@ function Laurel() {
 export default function HomePage({ onStart }) {
   return (
     <main className="pfm-home-luxury">
-      <section className="pfm-lux-hero">
+      <section className="pfm-lux-hero pfm-v7-hero">
         <div className="pfm-lux-copy">
           <p className="pfm-lux-eyebrow">Profit Flow Management</p>
 
@@ -120,43 +147,50 @@ export default function HomePage({ onStart }) {
             快速找出影響營收與成長的關鍵問題。
           </p>
 
-          <div className="pfm-lux-icon-row">
-            <div className="pfm-feature-item">
-              <PremiumIcon src={diagnosisIcon} alt="專業診斷" />
-              <span>專業診斷</span>
-            </div>
-
-            <div className="pfm-feature-item">
-              <PremiumIcon src={dataIcon} alt="數據分析" />
-              <span>數據分析</span>
-            </div>
-
-            <div className="pfm-feature-item">
-              <PremiumIcon src={adviceIcon} alt="精準建議" />
-              <span>精準建議</span>
-            </div>
-
-            <div className="pfm-feature-item">
-              <PremiumIcon src={roadmapIcon} alt="成長路徑" />
-              <span>成長路徑</span>
-            </div>
+          <div className="pfm-lux-icon-row pfm-v7-icon-row">
+            {featureIcons.map((item) => (
+              <div className="pfm-feature-item" key={item.label}>
+                <PremiumIcon src={item.src} alt={item.alt} />
+                <span>{item.label}</span>
+              </div>
+            ))}
           </div>
 
-          <button className="btn pfm-lux-main-btn" onClick={onStart}>
+          <button className="btn pfm-lux-main-btn pfm-v7-main-btn" onClick={onStart}>
             立即開始免費健檢
           </button>
 
-          <p className="pfm-lux-scope">
-            適用：美容、美甲、美睫、美髮、紋繡、SPA等項目之工作室、小型店面與連鎖經營。
-          </p>
+          <div className="pfm-lux-scope pfm-v7-scope">
+            <span>適用產業</span>
+            <strong>美容</strong>
+            <strong>美甲</strong>
+            <strong>美睫</strong>
+            <strong>美髮</strong>
+            <strong>紋繡</strong>
+            <strong>SPA</strong>
+          </div>
         </div>
 
-        <div className="pfm-lux-book-area">
+        <div className="pfm-lux-book-area pfm-v7-book-area">
           <img
             className="pfm-book-3d-img"
             src="/pfm-book-3d.webp"
             alt="PFM 美業獲利健檢報告"
           />
+        </div>
+      </section>
+
+      <section className="pfm-lux-aspects" id="pfm-aspects">
+        <div className="pfm-lux-title"><span />四大面向分析<span /></div>
+
+        <div className="pfm-lux-aspect-grid">
+          {aspectCards.map((card, index) => (
+            <article key={card.title}>
+              <small>0{index + 1}</small>
+              <h3>{card.title}</h3>
+              <p>{card.text}</p>
+            </article>
+          ))}
         </div>
       </section>
 
