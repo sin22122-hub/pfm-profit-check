@@ -217,12 +217,12 @@ export default function HomePage({ onStart }) {
       </section>
 
       <section className="pfm-lux-proof" id="pfm-faq">
-        <Laurel />
+        <span className="pfm-proof-line" aria-hidden="true" />
         <div>
           <h2>不要再靠感覺經營，開始用數據看懂你的店。</h2>
           <p>數據驅動決策，讓努力更有價值</p>
         </div>
-        <Laurel />
+        <span className="pfm-proof-line" aria-hidden="true" />
       </section>
     </main>
   );
