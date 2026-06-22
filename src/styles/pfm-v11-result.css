@@ -611,3 +611,169 @@
 .pdf-exporting .pfm-metric-card {
   box-shadow: none !important;
 }
+
+/* =========================================================
+   PFM Result Page V14 Final Override
+   目的：讓結果頁明顯套用酒紅金報告視覺，避免舊樣式覆蓋
+========================================================= */
+
+.pfm-result-page.pfm-report-luxury.pfm-report-v14 {
+  width: min(1180px, calc(100% - 32px)) !important;
+  margin: 46px auto 84px !important;
+  color: #1b3d36 !important;
+}
+
+.pfm-report-v14 .pfm-report-cover {
+  background:
+    radial-gradient(circle at 76% 18%, rgba(244, 210, 112, .18), transparent 28%),
+    linear-gradient(135deg, #210207 0%, #5d0b18 42%, #7a1024 64%, #260308 100%) !important;
+  color: #fff !important;
+  border: 1px solid rgba(232,197,108,.34) !important;
+  box-shadow: 0 30px 80px rgba(74, 9, 21, .18) !important;
+}
+
+.pfm-report-v14 .pfm-cover-copy h1,
+.pfm-report-v14 .pfm-cover-copy p,
+.pfm-report-v14 .pfm-cover-score strong,
+.pfm-report-v14 .pfm-cover-score p,
+.pfm-report-v14 .pfm-cover-score span {
+  color: #fff !important;
+}
+
+.pfm-report-v14 .pfm-cover-tags span {
+  color: #f5d97a !important;
+  background: rgba(255,255,255,.08) !important;
+  border-color: rgba(232,197,108,.36) !important;
+}
+
+.pfm-report-v14 .pfm-cover-score {
+  background:
+    radial-gradient(circle at center, rgba(232,197,108,.14), transparent 62%),
+    rgba(20,2,6,.48) !important;
+  border: 1px solid rgba(232,197,108,.36) !important;
+}
+
+.pfm-report-v14 .pfm-cover-score div {
+  background: linear-gradient(145deg, #f6d97c, #c99731) !important;
+  color: #3b050e !important;
+}
+
+.pfm-report-v14 .pfm-report-section,
+.pfm-report-v14 .pfm-blueprint-report {
+  background:
+    radial-gradient(circle at 100% 0%, rgba(214,167,70,.08), transparent 26%),
+    rgba(255,255,255,.96) !important;
+  border: 1px solid rgba(214,167,70,.26) !important;
+  box-shadow: 0 24px 64px rgba(74,9,21,.08) !important;
+}
+
+.pfm-report-v14 .pfm-report-section-head h2,
+.pfm-report-v14 .pfm-blueprint-hero h2 {
+  color: #173d35 !important;
+}
+
+.pfm-report-v14 .pfm-report-eyebrow,
+.pfm-report-v14 .pfm-metric-card span,
+.pfm-report-v14 .pfm-ad-insight span,
+.pfm-report-v14 .pfm-step-card-v13 span {
+  color: #c99a35 !important;
+}
+
+.pfm-report-v14 .pfm-report-card,
+.pfm-report-v14 .pfm-rank-card,
+.pfm-report-v14 .pfm-step-card-v13,
+.pfm-report-v14 .pfm-ad-insight,
+.pfm-report-v14 .pfm-radar-card {
+  background: #fff !important;
+  border: 1px solid rgba(214,167,70,.28) !important;
+  box-shadow: 0 14px 36px rgba(74,9,21,.05) !important;
+}
+
+.pfm-report-v14 .pfm-metric-card strong,
+.pfm-report-v14 .pfm-rank-card strong,
+.pfm-report-v14 .pfm-step-card-v13 strong,
+.pfm-report-v14 .pfm-narrative-grid h3,
+.pfm-report-v14 .pfm-radar-summary h3 {
+  color: #173d35 !important;
+}
+
+.pfm-report-v14 .pfm-hidden-cost-report {
+  color: #fff !important;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(232,197,108,.16), transparent 34%),
+    linear-gradient(135deg, #173d35, #285a49) !important;
+  border: 1px solid rgba(232,197,108,.32) !important;
+}
+
+.pfm-report-v14 .pfm-hidden-cost-report h2,
+.pfm-report-v14 .pfm-hidden-cost-report p {
+  color: #fff !important;
+}
+
+.pfm-report-v14 .pfm-hidden-cost-number {
+  background: rgba(255,255,255,.08) !important;
+  border: 1px solid rgba(232,197,108,.34) !important;
+}
+
+.pfm-report-v14 .pfm-hidden-cost-number strong {
+  color: #fff !important;
+}
+
+.pfm-report-v14 .pfm-unlock-report {
+  color: #fff !important;
+  background: linear-gradient(135deg, #390610, #7a1024 58%, #260309) !important;
+  border: 1px solid rgba(232,197,108,.34) !important;
+}
+
+.pfm-report-v14 .pfm-unlock-report h2,
+.pfm-report-v14 .pfm-unlock-report p {
+  color: #fff !important;
+}
+
+.pfm-report-v14 .pfm-ad-chapter .pfm-metric-grid.three {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+}
+
+.pfm-report-v14 .pfm-final-consult {
+  background: linear-gradient(135deg, #173d35, #285a49) !important;
+}
+
+/* 手機版修正：避免第四章與卡片橫向爆版 */
+@media (max-width: 980px) {
+  .pfm-report-v14 .pfm-report-cover,
+  .pfm-report-v14 .pfm-hidden-cost-report,
+  .pfm-report-v14 .pfm-split-grid,
+  .pfm-report-v14 .pfm-narrative-grid,
+  .pfm-report-v14 .pfm-radar-layout,
+  .pfm-report-v14 .pfm-metric-grid.five,
+  .pfm-report-v14 .pfm-metric-grid.four,
+  .pfm-report-v14 .pfm-metric-grid.three,
+  .pfm-report-v14 .pfm-ad-chapter .pfm-metric-grid.three {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .pfm-result-page.pfm-report-luxury.pfm-report-v14 {
+    width: min(100% - 18px, 440px) !important;
+    margin: 18px auto 60px !important;
+  }
+
+  .pfm-report-v14 .pfm-report-cover,
+  .pfm-report-v14 .pfm-report-section,
+  .pfm-report-v14 .pfm-hidden-cost-report,
+  .pfm-report-v14 .pfm-unlock-report,
+  .pfm-report-v14 .pfm-blueprint-report {
+    padding: 22px !important;
+    border-radius: 22px !important;
+  }
+
+  .pfm-report-v14 .pfm-cover-score {
+    min-height: 235px !important;
+  }
+
+  .pfm-report-v14 .pfm-metric-card strong {
+    white-space: normal !important;
+    font-size: 34px !important;
+  }
+}
