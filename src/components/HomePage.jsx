@@ -1,38 +1,20 @@
 import React from 'react';
 
+import diagnosisIcon from '../assets/icons/professional-diagnosis.png';
+import dataIcon from '../assets/icons/data-analysis.png';
+import adviceIcon from '../assets/icons/precision-advice.png';
+import roadmapIcon from '../assets/icons/growth-roadmap.png';
+
+function PremiumIcon({ src, alt }) {
+  return (
+    <span className="pfm-premium-icon-wrap" aria-hidden="true">
+      <img src={src} alt={alt} className="pfm-premium-icon-img" />
+    </span>
+  );
+}
+
 function GoldIcon({ type }) {
   const icons = {
-    diagnosis: (
-      <>
-        <rect x="6" y="5" width="12" height="15" rx="2" />
-        <path d="M9 5.5V4h6v1.5" />
-        <path d="M9 12l2 2 4-5" />
-        <path d="M9 17h6" />
-      </>
-    ),
-    data: (
-      <>
-        <path d="M5 19V11" />
-        <path d="M11 19V6" />
-        <path d="M17 19v-9" />
-        <path d="M3 19h18" />
-      </>
-    ),
-    target: (
-      <>
-        <circle cx="12" cy="12" r="8" />
-        <circle cx="12" cy="12" r="4" />
-        <path d="M18 6l3-3" />
-        <path d="M15 9l6-6" />
-      </>
-    ),
-    growth: (
-      <>
-        <path d="M4 17l5-5 4 4 7-8" />
-        <path d="M15 8h5v5" />
-        <path d="M4 20h16" />
-      </>
-    ),
     coin: (
       <>
         <ellipse cx="9" cy="7" rx="5" ry="3" />
@@ -94,7 +76,14 @@ function GoldIcon({ type }) {
 
   return (
     <span className="pfm-gold-badge" aria-hidden="true">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
         {icons[type]}
       </svg>
     </span>
@@ -132,10 +121,22 @@ export default function HomePage({ onStart }) {
           </p>
 
           <div className="pfm-lux-icon-row">
-            <div><GoldIcon type="diagnosis" /><span>專業診斷</span></div>
-            <div><GoldIcon type="data" /><span>數據分析</span></div>
-            <div><GoldIcon type="target" /><span>精準建議</span></div>
-            <div><GoldIcon type="growth" /><span>成長路徑</span></div>
+            <div>
+              <PremiumIcon src={diagnosisIcon} alt="專業診斷" />
+              <span>專業診斷</span>
+            </div>
+            <div>
+              <PremiumIcon src={dataIcon} alt="數據分析" />
+              <span>數據分析</span>
+            </div>
+            <div>
+              <PremiumIcon src={adviceIcon} alt="精準建議" />
+              <span>精準建議</span>
+            </div>
+            <div>
+              <PremiumIcon src={roadmapIcon} alt="成長路徑" />
+              <span>成長路徑</span>
+            </div>
           </div>
 
           <button className="btn pfm-lux-main-btn" onClick={onStart}>
