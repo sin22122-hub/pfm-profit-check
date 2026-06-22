@@ -120,13 +120,26 @@ function GoldIcon({ type }) {
 
 function Laurel() {
   return (
-    <svg className="pfm-laurel-svg" viewBox="0 0 120 80" fill="none" aria-hidden="true">
-      <path d="M16 66C38 45 58 30 92 18" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
-      <path d="M26 58C22 45 31 40 43 42C40 52 34 58 26 58Z" fill="currentColor" />
-      <path d="M39 48C34 35 43 29 56 31C53 43 48 49 39 48Z" fill="currentColor" />
-      <path d="M54 39C50 26 60 20 73 22C70 34 64 40 54 39Z" fill="currentColor" />
-      <path d="M70 30C67 18 77 12 90 14C86 25 80 31 70 30Z" fill="currentColor" />
-      <path d="M82 22C81 12 91 7 102 10C98 19 92 24 82 22Z" fill="currentColor" />
+    <svg
+      className="pfm-laurel-svg"
+      viewBox="0 0 180 86"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        className="pfm-laurel-arc"
+        d="M18 64 C48 28, 73 18, 90 18 C107 18, 132 28, 162 64"
+        stroke="currentColor"
+        strokeWidth="3"
+        strokeLinecap="round"
+      />
+      <ellipse cx="38" cy="54" rx="9" ry="4.5" transform="rotate(-38 38 54)" fill="currentColor" />
+      <ellipse cx="54" cy="41" rx="9" ry="4.5" transform="rotate(-28 54 41)" fill="currentColor" />
+      <ellipse cx="73" cy="31" rx="9" ry="4.5" transform="rotate(-14 73 31)" fill="currentColor" />
+      <ellipse cx="90" cy="27" rx="9" ry="4.5" fill="currentColor" />
+      <ellipse cx="107" cy="31" rx="9" ry="4.5" transform="rotate(14 107 31)" fill="currentColor" />
+      <ellipse cx="126" cy="41" rx="9" ry="4.5" transform="rotate(28 126 41)" fill="currentColor" />
+      <ellipse cx="142" cy="54" rx="9" ry="4.5" transform="rotate(38 142 54)" fill="currentColor" />
     </svg>
   );
 }
@@ -154,7 +167,7 @@ export default function HomePage({ onStart }) {
 
           <p className="pfm-v72-scope">
             <strong>適用對象</strong>
-            <span>美業工作室｜單店經營者｜連鎖品牌｜個人接案者｜服務型創業者</span>
+            <span>個人工作室｜小型店面｜多人店面｜連鎖／多店</span>
           </p>
         </div>
 
@@ -171,9 +184,8 @@ export default function HomePage({ onStart }) {
         <div className="pfm-lux-title"><span />四大面向分析<span /></div>
 
         <div className="pfm-lux-aspect-grid">
-          {aspectCards.map((card, index) => (
+          {aspectCards.map((card) => (
             <article key={card.title}>
-              <small>0{index + 1}</small>
               <PremiumIcon src={card.src} alt={card.alt} />
               <h3>{card.title}</h3>
               <p>{card.text}</p>
@@ -207,7 +219,7 @@ export default function HomePage({ onStart }) {
       <section className="pfm-lux-proof" id="pfm-faq">
         <Laurel />
         <div>
-          <h2>透過 PFM 找到你的成長突破點</h2>
+          <h2>不要再靠感覺經營，開始用數據看懂你的店。</h2>
           <p>數據驅動決策，讓努力更有價值</p>
         </div>
         <Laurel />
