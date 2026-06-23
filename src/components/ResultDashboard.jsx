@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import html2pdf from 'html2pdf.js';
 
 const BOOKING_URL = '';
+const STORAGE_KEY = 'pfm_latest_result_payload_v15';
 
 const statusTone = (value = '') => {
   if (['優秀', '健康', '良好', '極高', '高', '成長期', '擴張期', '卓越'].includes(value)) return 'good';
@@ -47,18 +48,54 @@ const getRoasInsight = (roas) => {
   return `每投入 1 元廣告費，只創造約 ${value} 元營收。廣告效率偏低，建議優先檢查廣告素材、受眾設定與成交流程。`;
 };
 
-const MetricCard = ({ label, value, sub, tone, large = false }) => (
-  <div className={`pfm-report-card pfm-metric-card ${tone ? `tone-${tone}` : ''} ${large ? 'large' : ''}`}>
-    <span>{label}</span>
-    <strong>{display(value)}</strong>
-    {sub && <p>{sub}</p>}
-  </div>
-);
+const getRateLevel = (value, good = 60, warn = 35) => {
+  const number = toNumber(value);
+  if (number >= good) return '優秀';
+  if (number >= warn) return '良好';
+  if (number > 0) return '待改善';
+  return '-';
+};
 
-const Chapter = ({ number, title, intro, children, className = '' }) => (
-  <section className={`pfm-report-section ${className}`}>
-    <div className="pfm-report-section-head">
-      {number && <p className="pfm-report-eyebrow">第{number}章</p>}
+const getCostLevel = (value, goodMax = 3, warnMax = 6) => {
+  const number = toNumber(value);
+  if (number <= goodMax) return '良好';
+  if (number <= warnMax) return '注意';
+  return '偏高';
+};
+
+const getStars = (level) => {
+  if (['卓越', '優秀', '極高', '高'].includes(level)) return '★★★★★';
+  if (['良好', '健康', '成長期', '擴張期'].includes(level)) return '★★★★☆';
+  if (['普通', '穩定', '中', '穩定期'].includes(level)) return '★★★☆☆';
+  if (['待改善', '需改善', '偏高', '偏低', '偏弱'].includes(level)) return '★★☆☆☆';
+  return '★★★☆☆';
+};
+
+const MetricCard = ({ icon, label, value, level, sub, tone }) => {
+  const finalTone = tone || statusTone(level);
+
+  return (
+    <article className={`pfm-v15-card pfm-v15-metric ${finalTone ? `tone-${finalTone}` : ''}`}>
+      <div className="pfm-v15-card-top">
+        {icon && <span className="pfm-v15-icon" aria-hidden="true">{icon}</span>}
+        <div>
+          <p>{label}</p>
+          {level && <em>{level}</em>}
+        </div>
+      </div>
+      <strong>{display(value)}</strong>
+      {sub && <small>{sub}</small>}
+    </article>
+  );
+};
+
+const Chapter = ({ number, icon, title, intro, children, className = '' }) => (
+  <section className={`pfm-v15-section ${className}`}>
+    <div className="pfm-v15-section-head">
+      <div className="pfm-v15-chapter-mark">
+        {icon && <span aria-hidden="true">{icon}</span>}
+        {number && <small>第{number}章</small>}
+      </div>
       <h2>{title}</h2>
       {intro && <p>{intro}</p>}
     </div>
@@ -67,112 +104,136 @@ const Chapter = ({ number, title, intro, children, className = '' }) => (
 );
 
 const RankCards = ({ items = [], type = 'problem' }) => (
-  <div className={`pfm-rank-list ${type}`}>
+  <div className={`pfm-v15-rank-list ${type}`}>
     {items.map((item, index) => (
-      <div className="pfm-rank-card" key={`${type}-${item}-${index}`}>
+      <article className="pfm-v15-rank-card" key={`${type}-${item}-${index}`}>
         <span>{index + 1}</span>
-        <strong>{display(item)}</strong>
-      </div>
+        <div>
+          <strong>{display(item)}</strong>
+          <p>{type === 'problem' ? '優先處理，避免持續影響獲利與成長。' : '建議放大，成為下一階段成長支點。'}</p>
+        </div>
+      </article>
     ))}
   </div>
 );
 
-const StepCards = ({ items = [] }) => (
-  <div className="pfm-step-list-v13">
-    {items.map((item, index) => (
-      <div className="pfm-step-card-v13" key={`${item}-${index}`}>
-        <span>STEP {index + 1}</span>
-        <strong>{display(item)}</strong>
-      </div>
-    ))}
+const StepCards = ({ items = [] }) => {
+  const fallback = ['建立回流機制', '優化金流與廣告成本', '建立會員經營流程'];
+  const goals = ['讓回流率往 35% 以上提升', '降低隱形成本與無效投放', '提升客戶終身價值與穩定營收'];
+  const tones = ['danger', 'warn', 'good'];
+
+  const list = (items.length ? items : fallback).slice(0, 3);
+
+  return (
+    <div className="pfm-v15-roadmap">
+      {list.map((item, index) => (
+        <article className={`pfm-v15-roadmap-step ${tones[index] || 'warn'}`} key={`${item}-${index}`}>
+          <div className="pfm-v15-step-number">{index + 1}</div>
+          <div>
+            <small>STEP {index + 1}</small>
+            <h3>{display(item)}</h3>
+            <p>{goals[index]}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  );
+};
+
+const FindingBox = ({ title, children }) => (
+  <div className="pfm-v15-finding">
+    <strong>{title}</strong>
+    <p>{children}</p>
   </div>
 );
 
 function RadarChart({ result }) {
+  const labels = ['獲利能力', '客戶經營', '流量能力', '成交能力', '品牌成熟'];
   const values = [
     Math.min(toNumber(result.grossMargin), 100),
     Math.min(toNumber(result.customerScore) * 10, 100),
+    Math.min(toNumber(result.socialScore), 100),
+    Math.min(toNumber(result.roas) * 8, 100),
     Math.min(toNumber(result.digitalScore), 100),
-    Math.min(toNumber(result.returnRate), 100),
-    Math.min(toNumber(result.netMargin), 100),
   ];
 
-  const center = 120;
-  const maxRadius = 86;
+  const center = 140;
+  const maxRadius = 92;
   const angleOffset = -90;
-  const points = values.map((value, index) => {
+
+  const pointFor = (index, radius) => {
     const angle = ((angleOffset + index * 72) * Math.PI) / 180;
-    const radius = (value / 100) * maxRadius;
-    return `${center + Math.cos(angle) * radius},${center + Math.sin(angle) * radius}`;
-  }).join(' ');
+    return [center + Math.cos(angle) * radius, center + Math.sin(angle) * radius];
+  };
+
+  const points = values.map((value, index) => pointFor(index, (value / 100) * maxRadius).join(',')).join(' ');
 
   const grid = [0.25, 0.5, 0.75, 1].map((ratio) => {
-    const poly = [0, 1, 2, 3, 4].map((index) => {
-      const angle = ((angleOffset + index * 72) * Math.PI) / 180;
-      const radius = ratio * maxRadius;
-      return `${center + Math.cos(angle) * radius},${center + Math.sin(angle) * radius}`;
-    }).join(' ');
-    return <polygon key={ratio} points={poly} className="pfm-radar-grid" />;
+    const poly = [0, 1, 2, 3, 4].map((index) => pointFor(index, ratio * maxRadius).join(',')).join(' ');
+    return <polygon key={ratio} points={poly} className="pfm-v15-radar-grid" />;
   });
 
   return (
-    <div className="pfm-radar-card">
-      <svg viewBox="0 0 240 240" className="pfm-radar-svg" aria-hidden="true">
+    <div className="pfm-v15-radar-card">
+      <svg viewBox="0 0 280 280" className="pfm-v15-radar-svg" aria-hidden="true">
         {grid}
-        <polygon points={points} className="pfm-radar-area" />
-        <polygon points={points} className="pfm-radar-line" />
+        {[0, 1, 2, 3, 4].map((index) => {
+          const [x, y] = pointFor(index, maxRadius);
+          return <line key={index} x1={center} y1={center} x2={x} y2={y} className="pfm-v15-radar-axis" />;
+        })}
+        <polygon points={points} className="pfm-v15-radar-area" />
+        <polygon points={points} className="pfm-v15-radar-line" />
       </svg>
-      <div className="pfm-radar-labels">
-        <span>獲利</span>
-        <span>客戶</span>
-        <span>數位</span>
-        <span>回流</span>
-        <span>淨利</span>
-      </div>
+      <div className="pfm-v15-radar-label top">{labels[0]}</div>
+      <div className="pfm-v15-radar-label right-top">{labels[1]}</div>
+      <div className="pfm-v15-radar-label right-bottom">{labels[2]}</div>
+      <div className="pfm-v15-radar-label left-bottom">{labels[3]}</div>
+      <div className="pfm-v15-radar-label left-top">{labels[4]}</div>
     </div>
   );
 }
 
 export default function ResultDashboard({ result, formData = {}, onRestart }) {
-  const [unlocked, setUnlocked] = useState(false);
-  const [email, setEmail] = useState('');
-  const [cachedReport, setCachedReport] = useState(() => {
+  const savedPayload = useMemo(() => {
     try {
-      const saved = window.localStorage.getItem('pfm_latest_report');
-      return saved ? JSON.parse(saved) : null;
-    } catch (error) {
+      return JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
+    } catch {
       return null;
     }
-  });
+  }, []);
+
+  const effectiveResult = result || savedPayload?.result || null;
+  const effectiveFormData = result ? formData : (savedPayload?.formData || formData || {});
+
+  const [unlocked, setUnlocked] = useState(Boolean(savedPayload?.unlocked));
+  const [email, setEmail] = useState(savedPayload?.email || '');
 
   useEffect(() => {
-    if (!result) return;
+    if (!effectiveResult) return;
+    localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify({
+        result: effectiveResult,
+        formData: effectiveFormData,
+        unlocked,
+        email,
+      })
+    );
+  }, [effectiveResult, effectiveFormData, unlocked, email]);
 
-    const payload = {
-      result,
-      formData,
-      savedAt: new Date().toISOString(),
-    };
+  if (!effectiveResult) return null;
 
-    setCachedReport(payload);
+  const problems = [effectiveResult.problem1, effectiveResult.problem2, effectiveResult.problem3].filter(Boolean);
+  const strengths = [effectiveResult.strength1, effectiveResult.strength2, effectiveResult.strength3].filter(Boolean);
+  const actions = [effectiveResult.priority1, effectiveResult.priority2, effectiveResult.priority3].filter(Boolean);
+  const roasLevel = getRoasLevel(effectiveResult.roas);
+  const roasInsight = getRoasInsight(effectiveResult.roas);
+  const growthLevel = display(effectiveResult.growthPotentialLevel, '待改善');
 
-    try {
-      window.localStorage.setItem('pfm_latest_report', JSON.stringify(payload));
-    } catch (error) {
-      // localStorage 可能在隱私模式或容量不足時失敗，失敗時不影響結果頁顯示。
-    }
-  }, [result, formData]);
-
-  const activeResult = result || cachedReport?.result;
-  const activeFormData = result ? formData : (cachedReport?.formData || formData);
-
-  if (!activeResult) return null;
-
-  const problems = [activeResult.problem1, activeResult.problem2, activeResult.problem3].filter(Boolean);
-  const strengths = [activeResult.strength1, activeResult.strength2, activeResult.strength3].filter(Boolean);
-  const actions = [activeResult.priority1, activeResult.priority2, activeResult.priority3].filter(Boolean);
-  const roasLevel = getRoasLevel(activeResult.roas);
-  const roasInsight = getRoasInsight(activeResult.roas);
+  const grossLevel = getRateLevel(effectiveResult.grossMargin, 70, 55);
+  const netLevel = getRateLevel(effectiveResult.netMargin, 25, 15);
+  const returnLevel = getRateLevel(effectiveResult.returnRate, 40, 25);
+  const paymentLevel = getCostLevel(effectiveResult.paymentFeeRate, 2.5, 4);
 
   const downloadPDF = () => {
     const element = document.getElementById('growth-blueprint');
@@ -186,7 +247,7 @@ export default function ResultDashboard({ result, formData = {}, onRestart }) {
 
     const options = {
       margin: [8, 8, 8, 8],
-      filename: `PFM美業獲利健檢_${display(activeFormData.storeName, '店家')}.pdf`,
+      filename: `PFM美業獲利健檢_${display(effectiveFormData.storeName, '店家')}.pdf`,
       image: { type: 'jpeg', quality: 1 },
       html2canvas: {
         scale: 2,
@@ -223,83 +284,88 @@ export default function ResultDashboard({ result, formData = {}, onRestart }) {
     }, 80);
   };
 
-  return (
-    <main id="pfm-report" className="pfm-result-page pfm-report-luxury pfm-report-v14">
-      <section className="pfm-report-cover">
-        <div className="pfm-cover-copy">
-          <p className="pfm-report-eyebrow">PFM 美業獲利健檢結果</p>
-          <h1>{display(activeFormData.storeName, '你的店家')}｜經營診斷結果</h1>
-          <p>{display(activeResult.stageComment)}</p>
+  const restart = () => {
+    localStorage.removeItem(STORAGE_KEY);
+    onRestart?.();
+  };
 
-          <div className="pfm-cover-tags">
-            <span>{display(activeResult.businessType || activeFormData.businessType)}</span>
-            <span>{Array.isArray(activeFormData.storeType) ? activeFormData.storeType.join('、') : display(activeFormData.storeType)}</span>
-            <span>{display(activeFormData.month, '本期資料')}</span>
+  return (
+    <main id="pfm-report" className="pfm-result-page pfm-v15-report">
+      <section className="pfm-v15-cover">
+        <div className="pfm-v15-cover-copy">
+          <p className="pfm-v15-eyebrow">PFM 美業獲利健檢結果</p>
+          <h1>{display(effectiveFormData.storeName, '你的店家')}｜經營診斷結果</h1>
+          <p>{display(effectiveResult.stageComment)}</p>
+
+          <div className="pfm-v15-tags">
+            <span>{display(effectiveResult.businessType || effectiveFormData.businessType)}</span>
+            <span>{Array.isArray(effectiveFormData.storeType) ? effectiveFormData.storeType.join('、') : display(effectiveFormData.storeType)}</span>
+            <span>{display(effectiveFormData.month, '本期資料')}</span>
           </div>
         </div>
 
-        <div className="pfm-cover-score">
+        <div className="pfm-v15-score-panel">
           <span>店家成長階段</span>
-          <strong>{display(activeResult.growthStage)}</strong>
-          <div>{display(activeResult.growthScore)}</div>
+          <strong>{display(effectiveResult.growthStage)}</strong>
+          <div>{display(effectiveResult.growthScore)}</div>
           <p>綜合分數</p>
         </div>
       </section>
 
       <Chapter title="獲利健康度總覽" intro="先看最直接影響獲利與經營穩定度的核心指標。">
-        <div className="pfm-metric-grid five">
-          <MetricCard label="毛利率" value={activeResult.grossMargin} />
-          <MetricCard label="淨利率" value={activeResult.netMargin} />
-          <MetricCard label="回流率" value={activeResult.returnRate} />
-          <MetricCard label="客單價" value={money(activeResult.averageOrderValue)} />
-          <MetricCard label="金流手續費率" value={activeResult.paymentFeeRate} />
+        <div className="pfm-v15-metric-grid five">
+          <MetricCard icon="💰" label="毛利率" value={effectiveResult.grossMargin} level={grossLevel} sub="代表服務定價與成本控制能力。" />
+          <MetricCard icon="📈" label="淨利率" value={effectiveResult.netMargin} level={netLevel} sub="真正留下來的獲利能力。" />
+          <MetricCard icon="🔄" label="回流率" value={effectiveResult.returnRate} level={returnLevel} sub="客戶是否願意再次回來消費。" />
+          <MetricCard icon="💳" label="客單價" value={money(effectiveResult.averageOrderValue)} level="良好" sub="單次消費金額與服務價值。" />
+          <MetricCard icon="🏦" label="金流手續費率" value={effectiveResult.paymentFeeRate} level={paymentLevel} sub="隱形成本是否正在侵蝕淨利。" />
         </div>
       </Chapter>
 
-      <div className="pfm-split-grid">
-        <Chapter title="目前最需要處理的三件事" intro="優先看會影響獲利、回流與成長速度的關鍵問題。">
+      <div className="pfm-v15-split-grid">
+        <Chapter icon="🔴" title="目前最需要處理的三件事" intro="優先看會影響獲利、回流與成長速度的關鍵問題。">
           <RankCards items={problems} type="problem" />
         </Chapter>
 
-        <Chapter title="目前最值得放大的三個優勢" intro="不是只找問題，也要看見你已經做對的地方。">
+        <Chapter icon="🟢" title="目前最值得放大的三個優勢" intro="不是只找問題，也要看見你已經做對的地方。">
           <RankCards items={strengths} type="strength" />
         </Chapter>
       </div>
 
-      <Chapter title="建議改善順序" intro="依照目前診斷結果，建議先從這三個方向開始。">
-        <StepCards items={actions} />
-      </Chapter>
-
-      <Chapter title="獲利成長機會分析" intro="這裡不是承諾營收，而是協助你看見目前經營結構中可能被放大的空間。">
-        <div className="pfm-metric-grid four">
-          <MetricCard label="回流提升空間" value={activeResult.returnGrowthRoom} />
-          <MetricCard label="可轉化營收" value={money(activeResult.convertibleRevenue)} />
-          <MetricCard label="可提升獲利" value={money(activeResult.profitGrowthRoom)} />
-          <MetricCard label="成長潛力評級" value={activeResult.growthPotentialLevel} tone={statusTone(activeResult.growthPotentialLevel)} />
-        </div>
-      </Chapter>
-
-      <section className="pfm-hidden-cost-report">
+      <section className="pfm-v15-hidden-cost">
         <div>
-          <p className="pfm-report-eyebrow">你可能忽略的隱形成本</p>
+          <p className="pfm-v15-eyebrow">⚠ 隱形成本提醒</p>
           <h2>金流手續費正在持續吃掉你的淨利</h2>
-          <p>{display(activeResult.hiddenCostWarning)}</p>
+          <p>{display(effectiveResult.hiddenCostWarning)}</p>
         </div>
 
-        <div className="pfm-hidden-cost-number">
+        <div className="pfm-v15-hidden-number">
           <span>本期金流手續費率</span>
-          <strong>{display(activeResult.paymentFeeRate)}</strong>
-          <p>這類費用通常不會被老闆第一時間感覺到，但它會直接降低實際留下來的淨利。</p>
+          <strong>{display(effectiveResult.paymentFeeRate)}</strong>
+          <p>若維持目前規模，這類費用會持續累積成年度獲利流失。</p>
+        </div>
+      </section>
+
+      <section className="pfm-v15-blueprint-nav">
+        <p className="pfm-v15-eyebrow">店家成長藍圖</p>
+        <h2>從「知道問題」進入「理解原因」</h2>
+        <p>以下內容將目前健檢數據整理成顧問視角，協助你看見獲利、客戶、流量與下一步改善方向。</p>
+        <div className="pfm-v15-nav-grid">
+          <span>💰 獲利結構</span>
+          <span>👥 客戶經營</span>
+          <span>📣 流量內容</span>
+          <span>🎯 廣告效率</span>
+          <span>⭐ 成長潛力</span>
+          <span>🚀 90天改善</span>
         </div>
       </section>
 
       {!unlocked && (
-        <section className="pfm-unlock-report no-print">
-          <p className="pfm-report-eyebrow">免費解鎖</p>
-          <h2>店家成長藍圖已產生</h2>
-          <p>看懂結果只是開始。解鎖後可查看你的獲利結構、客戶結構、流量內容能力、成長瓶頸與顧問建議。</p>
-
-          <div className="pfm-email-row">
+        <section className="pfm-v15-unlock no-print">
+          <p className="pfm-v15-eyebrow">免費解鎖</p>
+          <h2>完整店家成長藍圖已產生</h2>
+          <p>解鎖後可查看第一章至第七章的完整顧問報告，包含轉換漏斗、成長潛力雷達圖與90天改善路徑。</p>
+          <div className="pfm-v15-email-row">
             <input
               type="email"
               value={email}
@@ -307,110 +373,131 @@ export default function ResultDashboard({ result, formData = {}, onRestart }) {
               placeholder="輸入 Email 免費解鎖"
             />
             <button className="btn" onClick={unlockBlueprint}>
-              免費解鎖店家成長藍圖
+              免費解鎖完整報告
             </button>
           </div>
         </section>
       )}
 
       {unlocked && (
-        <section id="growth-blueprint" className="pfm-blueprint-report">
+        <section id="growth-blueprint" className="pfm-v15-blueprint">
           <div className="pdf-action-bar no-print">
             <button className="btn" onClick={downloadPDF}>
               下載 PDF 診斷報告
             </button>
           </div>
 
-          <div className="pfm-blueprint-hero">
-            <p className="pfm-report-eyebrow">店家成長藍圖</p>
-            <h2>從「知道問題」進入「理解原因」</h2>
-            <p>以下內容將目前的健檢數據整理成顧問視角，協助你看見獲利、客戶、流量與下一步改善方向。</p>
-          </div>
-
-          <Chapter number="一" title="獲利結構分析" intro="獲利不是只看營收，而是看毛利、淨利與成本是否能留下錢。">
-            <div className="pfm-metric-grid auto">
-              <MetricCard label="本月營收" value={money(activeResult.totalRevenue)} />
-              <MetricCard label="毛利率" value={activeResult.grossMargin} />
-              <MetricCard label="淨利率" value={activeResult.netMargin} />
-              <MetricCard label="人事成本率" value={activeResult.hrCostRate} />
-              <MetricCard label="租金率" value={activeResult.rentRate} />
-              <MetricCard label="廣告率" value={activeResult.adRate} />
-              <MetricCard label="金流手續費率" value={activeResult.paymentFeeRate} />
+          <Chapter number="一" icon="💰" title="獲利結構分析" intro="獲利不是只看營收，而是看毛利、淨利與成本是否能留下錢。">
+            <div className="pfm-v15-metric-grid auto">
+              <MetricCard icon="💵" label="本月營收" value={money(effectiveResult.totalRevenue)} />
+              <MetricCard icon="📈" label="毛利率" value={effectiveResult.grossMargin} level={grossLevel} />
+              <MetricCard icon="💎" label="淨利率" value={effectiveResult.netMargin} level={netLevel} />
+              <MetricCard icon="👤" label="人事成本率" value={effectiveResult.hrCostRate} />
+              <MetricCard icon="🏢" label="租金率" value={effectiveResult.rentRate} />
+              <MetricCard icon="📣" label="廣告率" value={effectiveResult.adRate} />
+              <MetricCard icon="💳" label="金流手續費率" value={effectiveResult.paymentFeeRate} level={paymentLevel} />
             </div>
+            <FindingBox title="本章重點發現">
+              毛利率與淨利率是獲利能力的核心觀察點；若金流、廣告或固定成本偏高，即使營收不差，也可能讓實際留下來的錢被稀釋。
+            </FindingBox>
           </Chapter>
 
-          <Chapter number="二" title="客戶經營分析" intro="回流、新客與介紹客的比例，會決定你是靠穩定經營，還是一直追新客。">
-            <div className="pfm-metric-grid four">
-              <MetricCard label="新客率" value={activeResult.newCustomerRate} />
-              <MetricCard label="介紹客比例" value={activeResult.referralRate} />
-              <MetricCard label="客戶經營力" value={`${display(activeResult.customerScore)} / 10`} />
-              <MetricCard label="客戶經營力評級" value={activeResult.customerLevel} tone={statusTone(activeResult.customerLevel)} />
+          <Chapter number="二" icon="👥" title="客戶經營分析" intro="回流、新客與介紹客的比例，會決定你是靠穩定經營，還是一直追新客。">
+            <div className="pfm-v15-metric-grid four">
+              <MetricCard icon="👤" label="新客率" value={effectiveResult.newCustomerRate} />
+              <MetricCard icon="🔄" label="回流率" value={effectiveResult.returnRate} level={returnLevel} />
+              <MetricCard icon="🤝" label="介紹客比例" value={effectiveResult.referralRate} />
+              <MetricCard icon="🏆" label="客戶經營力" value={`${display(effectiveResult.customerScore)} / 10`} level={effectiveResult.customerLevel} />
             </div>
+            <FindingBox title="本章重點發現">
+              客戶經營的重點不只是新客，而是讓顧客願意再次回來、願意介紹，進一步降低獲客壓力與廣告依賴。
+            </FindingBox>
           </Chapter>
 
-          <Chapter number="三" title="流量與內容能力" intro="PFM 不鼓勵盲目投廣告，而是先看目前是否具備自然流量與內容經營基礎。">
-            <div className="pfm-metric-grid four">
-              <MetricCard label="社群經營度" value={activeResult.socialScore} />
-              <MetricCard label="內容執行力" value={activeResult.contentScore} />
-              <MetricCard label="數位成熟度" value={activeResult.digitalScore} />
-              <MetricCard label="數位成熟度評級" value={activeResult.digitalLevel} tone={statusTone(activeResult.digitalLevel)} />
+          <Chapter number="三" icon="📣" title="流量與內容能力" intro="PFM 不鼓勵盲目投廣告，而是先看目前是否具備自然流量與內容經營基礎。">
+            <div className="pfm-v15-metric-grid four">
+              <MetricCard icon="📱" label="社群經營度" value={effectiveResult.socialScore} />
+              <MetricCard icon="✍️" label="內容執行力" value={effectiveResult.contentScore} />
+              <MetricCard icon="🌐" label="數位成熟度" value={effectiveResult.digitalScore} />
+              <MetricCard icon="📊" label="數位成熟度評級" value={effectiveResult.digitalLevel} tone={statusTone(effectiveResult.digitalLevel)} />
             </div>
+            <FindingBox title="本章重點發現">
+              流量與內容能力會影響未來獲客穩定度。若數位成熟度偏弱，建議先建立固定內容節奏，再進一步放大廣告投放。
+            </FindingBox>
           </Chapter>
 
           <Chapter
             number="四"
+            icon="🎯"
             title="轉換漏斗與廣告效率"
-            intro="CPA 用來看每成交一位客人的廣告成本；ROAS 用來看每 1 元廣告費帶回多少營收。若未填寫廣告成交數，CPA 將無法計算，但 ROAS 仍可依營收與廣告費估算。"
-            className="pfm-ad-chapter"
+            intro="流量進來後，有沒有成功變成客戶？CPA 用來看每成交一位客人的廣告成本；ROAS 用來看每 1 元廣告費帶回多少營收。"
+            className="pfm-v15-ad-chapter"
           >
-            <div className="pfm-metric-grid three">
-              <MetricCard label="CPA" value={activeResult.cpa} sub="每成交一位客人的廣告總成本" />
-              <MetricCard label="ROAS" value={activeResult.roas} sub="每 1 元廣告成本創造的營收倍數" />
-              <MetricCard label="金流手續費率" value={activeResult.paymentFeeRate} sub="非現金收款平台成本占營收比例" />
+            <div className="pfm-v15-funnel">
+              <span>曝光</span>
+              <b />
+              <span>詢問</span>
+              <b />
+              <span>預約</span>
+              <b />
+              <span>成交</span>
             </div>
 
-            <div className={`pfm-ad-insight tone-${statusTone(roasLevel)}`}>
+            <div className="pfm-v15-metric-grid three">
+              <MetricCard icon="👤" label="CPA" value={effectiveResult.cpa} sub="每成交一位客人的廣告總成本" />
+              <MetricCard icon="📈" label="ROAS" value={effectiveResult.roas} sub="每 1 元廣告成本創造的營收倍數" />
+              <MetricCard icon="💳" label="金流手續費率" value={effectiveResult.paymentFeeRate} sub="非現金收款平台成本占營收比例" />
+            </div>
+
+            <div className={`pfm-v15-ad-insight tone-${statusTone(roasLevel)}`}>
               <span>廣告效率評級</span>
               <strong>{roasLevel}</strong>
+              <em>{getStars(roasLevel)}</em>
               <p>{roasInsight}</p>
             </div>
+
+            <FindingBox title="本章重點發現">
+              廣告效率不是只看有沒有投放，而是看流量進來後能否被預約、成交與回流承接。若 ROAS 表現不錯，下一階段應強化會員與回流機制。
+            </FindingBox>
           </Chapter>
 
-          <Chapter number="五" title="成長瓶頸與顧問診斷">
-            <div className="pfm-narrative-grid">
-              <div className="pfm-report-card">
-                <h3>目前狀態</h3>
-                <p>{display(activeResult.currentStatus)}</p>
-              </div>
-              <div className="pfm-report-card">
-                <h3>成長機會</h3>
-                <p>{display(activeResult.growthOpportunity)}</p>
-              </div>
-              <div className="pfm-report-card">
-                <h3>建議方向</h3>
-                <p>{display(activeResult.suggestionDirection)}</p>
+          <Chapter number="五" icon="⭐" title="成長潛力藍圖" intro="用五個面向快速看見目前店家的經營輪廓與下一步放大方向。">
+            <div className="pfm-v15-radar-layout">
+              <RadarChart result={effectiveResult} />
+              <div className="pfm-v15-radar-summary">
+                <p>綜合評級</p>
+                <strong>{growthLevel}</strong>
+                <em>{getStars(growthLevel)}</em>
+                <span>{display(effectiveResult.growthOpportunity)}</span>
               </div>
             </div>
           </Chapter>
 
-          <Chapter number="六" title="成長潛力雷達圖" intro="用五個面向快速看見目前店家的經營輪廓與下一步放大方向。">
-            <div className="pfm-radar-layout">
-              <RadarChart result={activeResult} />
-              <div className="pfm-report-card pfm-radar-summary">
-                <h3>成長潛力評級</h3>
-                <strong>{display(activeResult.growthPotentialLevel)}</strong>
-                <p>{display(activeResult.growthOpportunity)}</p>
-              </div>
-            </div>
-          </Chapter>
-
-          <Chapter number="七" title="90天優先改善路徑">
+          <Chapter number="六" icon="🚀" title="90天優先改善路徑" intro="將目前診斷結果轉換成可執行的三步驟，避免只知道問題，卻不知道下一步要做什麼。">
             <StepCards items={actions} />
+          </Chapter>
 
-            <div className="pfm-final-consult no-print">
-              <p>{display(activeResult.nextAction)}</p>
+          <Chapter number="七" icon="🧭" title="顧問診斷結論" className="pfm-v15-final-chapter">
+            <div className="pfm-v15-consult-grid">
+              <article>
+                <h3>目前狀態</h3>
+                <p>{display(effectiveResult.currentStatus)}</p>
+              </article>
+              <article>
+                <h3>最大機會</h3>
+                <p>{display(effectiveResult.growthOpportunity)}</p>
+              </article>
+              <article>
+                <h3>建議方向</h3>
+                <p>{display(effectiveResult.suggestionDirection)}</p>
+              </article>
+            </div>
+
+            <div className="pfm-v15-cta no-print">
+              <h3>你的店並不缺努力，而是缺少一套看得懂數字的經營系統。</h3>
+              <p>{display(effectiveResult.nextAction)}</p>
               <a className="btn" href={BOOKING_URL || '#'} target="_blank" rel="noreferrer">
-                {display(activeResult.bookingText, 'Line｜預約 PFM 一對一診斷')}
+                {display(effectiveResult.bookingText, 'Line｜預約 PFM 一對一診斷')}
               </a>
             </div>
           </Chapter>
@@ -418,7 +505,7 @@ export default function ResultDashboard({ result, formData = {}, onRestart }) {
       )}
 
       <div className="result-actions-v12 no-print">
-        <button className="btn secondary" onClick={onRestart}>
+        <button className="btn secondary" onClick={restart}>
           重新健檢
         </button>
       </div>
