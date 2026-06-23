@@ -386,3 +386,950 @@
   .pfm-v17-roadmap article { grid-template-columns: 56px 1fr; padding: 18px; }
   .pfm-v17-roadmap b { width: 50px; height: 50px; font-size: 24px; }
 }
+
+
+/* =========================================================
+   PFM Result Page V18 Final Layout Tune
+   1) 獲利健康度總覽 3+2 排列
+   2) 第一章顧問報告式主次排版
+   3) 整體比例、字級、卡片高度收斂
+   4) 顧問提示固定貼底，黃色提示區對齊
+========================================================= */
+
+.pfm-v17-result-page {
+  padding: 42px 0 72px !important;
+}
+
+.pfm-v17-hero-card,
+.pfm-v17-section,
+.pfm-v17-two-col,
+.pfm-v17-hidden-cost,
+.pfm-v17-blueprint-nav {
+  width: min(1180px, calc(100% - 72px)) !important;
+}
+
+.pfm-v17-hero-card {
+  min-height: 292px !important;
+  padding: 36px 42px !important;
+  gap: 40px !important;
+}
+
+.pfm-v17-hero-card::after {
+  font-size: 176px !important;
+  right: 24% !important;
+  top: 18% !important;
+}
+
+.pfm-v17-hero-copy h1 {
+  font-size: clamp(32px, 2.9vw, 50px) !important;
+  margin-bottom: 18px !important;
+}
+
+.pfm-v17-hero-copy p:not(.pfm-v17-eyebrow) {
+  font-size: 15.5px !important;
+  line-height: 1.62 !important;
+}
+
+.pfm-v17-eyebrow {
+  font-size: 14px !important;
+  margin-bottom: 14px !important;
+}
+
+.pfm-v17-tags {
+  margin-top: 22px !important;
+}
+
+.pfm-v17-tags span {
+  font-size: 13px !important;
+  padding: 7px 14px !important;
+}
+
+.pfm-v17-stage-card {
+  min-height: 230px !important;
+  padding: 28px !important;
+}
+
+.pfm-v17-stage-card p,
+.pfm-v17-stage-card span {
+  font-size: 14px !important;
+}
+
+.pfm-v17-stage-card strong {
+  font-size: 46px !important;
+  margin: 9px 0 14px !important;
+}
+
+.pfm-v17-score-circle {
+  width: 106px !important;
+  height: 106px !important;
+  font-size: 30px !important;
+}
+
+/* Section density */
+.pfm-v17-section,
+.pfm-v17-blueprint-nav {
+  margin-top: 22px !important;
+  padding: 30px 34px !important;
+  border-radius: 24px !important;
+}
+
+.pfm-v17-section h2,
+.pfm-v17-blueprint-nav h2,
+.pfm-v17-list-card h2 {
+  font-size: clamp(24px, 1.65vw, 32px) !important;
+  margin: 8px 0 12px !important;
+  letter-spacing: -0.03em !important;
+}
+
+.pfm-v17-section-subtitle,
+.pfm-v17-blueprint-nav > p:not(.pfm-v17-eyebrow),
+.pfm-v17-list-card > p {
+  font-size: 14.5px !important;
+  line-height: 1.58 !important;
+  margin-bottom: 20px !important;
+}
+
+.pfm-v17-chapter-label {
+  font-size: 14px !important;
+  gap: 10px !important;
+}
+
+.pfm-v17-icon-badge {
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 12px !important;
+  font-size: 18px !important;
+}
+
+/* Metric cards: consistent and tighter */
+.pfm-v17-metric-card {
+  min-height: 206px !important;
+  padding: 16px 18px !important;
+  border-radius: 18px !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.pfm-v17-metric-head {
+  margin-bottom: 12px !important;
+  gap: 10px !important;
+}
+
+.pfm-v17-metric-head h4 {
+  font-size: 15px !important;
+  line-height: 1.15 !important;
+}
+
+.pfm-v17-grade-pill {
+  font-size: 11.5px !important;
+  padding: 3px 9px !important;
+}
+
+.pfm-v17-metric-value {
+  font-size: clamp(28px, 2vw, 38px) !important;
+  line-height: 1 !important;
+  margin-bottom: 8px !important;
+  letter-spacing: -0.04em !important;
+}
+
+.pfm-v17-metric-desc {
+  font-size: 12.5px !important;
+  line-height: 1.25 !important;
+  margin: 0 0 8px !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+/* Consultant tip: independent yellow strip and aligned bottom */
+.pfm-v17-tip {
+  margin-top: auto !important;
+  min-height: 58px !important;
+  display: grid !important;
+  grid-template-columns: 24px 1fr !important;
+  gap: 9px !important;
+  align-items: center !important;
+  padding: 10px 11px !important;
+  border-radius: 12px !important;
+}
+
+.pfm-v17-tip-icon {
+  font-size: 16px !important;
+  align-self: center !important;
+}
+
+.pfm-v17-tip p {
+  font-size: 12.5px !important;
+  line-height: 1.38 !important;
+}
+
+/* 獲利健康度總覽：桌機 3+2 */
+.pfm-v17-overview-grid {
+  display: grid !important;
+  grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+  gap: 16px !important;
+  align-items: stretch !important;
+}
+
+.pfm-v17-overview-grid .pfm-v17-metric-card {
+  grid-column: span 2 !important;
+  min-height: 208px !important;
+}
+
+.pfm-v17-overview-grid .pfm-v17-metric-card:nth-child(4) {
+  grid-column: 2 / span 2 !important;
+}
+
+.pfm-v17-overview-grid .pfm-v17-metric-card:nth-child(5) {
+  grid-column: 4 / span 2 !important;
+}
+
+/* 第一章：本月營收大卡＋毛利/淨利，第二列四指標 */
+.pfm-v17-profit-top {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr) minmax(0, 1fr) !important;
+  gap: 16px !important;
+  margin-bottom: 16px !important;
+  align-items: stretch !important;
+}
+
+.pfm-v17-profit-bottom {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 16px !important;
+  align-items: stretch !important;
+}
+
+.pfm-v17-profit-top .pfm-v17-metric-card,
+.pfm-v17-profit-bottom .pfm-v17-metric-card,
+.pfm-v17-metric-grid.three .pfm-v17-metric-card,
+.pfm-v17-metric-grid.four .pfm-v17-metric-card {
+  min-height: 206px !important;
+}
+
+.pfm-v17-metric-card.is-revenue {
+  min-height: 206px !important;
+  justify-content: center !important;
+  text-align: left !important;
+  background:
+    radial-gradient(circle at 85% 10%, rgba(214,167,70,.18), transparent 38%),
+    linear-gradient(135deg, rgba(255,253,248,.9), rgba(255,246,230,.76)) !important;
+}
+
+.pfm-v17-metric-card.is-revenue .pfm-v17-metric-head {
+  justify-content: flex-start !important;
+}
+
+.pfm-v17-metric-card.is-revenue .pfm-v17-metric-value {
+  font-size: clamp(42px, 3.4vw, 60px) !important;
+  line-height: 1 !important;
+}
+
+.pfm-v17-metric-card.is-revenue .pfm-v17-tip {
+  max-width: none !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* 統一章節說明盒高度與視覺密度 */
+.pfm-v17-standard-box,
+.pfm-v17-insight-box {
+  margin-top: 16px !important;
+  padding: 15px 18px !important;
+  border-radius: 15px !important;
+}
+
+.pfm-v17-standard-box h4,
+.pfm-v17-insight-box h4 {
+  font-size: 15px !important;
+  margin-bottom: 6px !important;
+}
+
+.pfm-v17-standard-box p,
+.pfm-v17-insight-box p {
+  font-size: 13.5px !important;
+  line-height: 1.55 !important;
+}
+
+/* 問題/優勢區塊收斂 */
+.pfm-v17-two-col {
+  gap: 22px !important;
+  margin-top: 22px !important;
+}
+
+.pfm-v17-list-card {
+  padding: 26px 28px !important;
+  border-radius: 24px !important;
+}
+
+.pfm-v17-status-dot {
+  width: 40px !important;
+  height: 40px !important;
+}
+
+.pfm-v17-list-item {
+  min-height: 70px !important;
+  grid-template-columns: 48px 1fr !important;
+  gap: 14px !important;
+  padding: 13px 15px !important;
+  border-radius: 15px !important;
+}
+
+.pfm-v17-list-item b {
+  width: 40px !important;
+  height: 40px !important;
+  font-size: 16px !important;
+}
+
+.pfm-v17-list-item strong {
+  font-size: 15.5px !important;
+}
+
+.pfm-v17-list-item span {
+  font-size: 12.8px !important;
+}
+
+/* 隱形成本區塊 */
+.pfm-v17-hidden-cost {
+  margin-top: 22px !important;
+  padding: 34px 40px !important;
+  gap: 36px !important;
+  border-radius: 26px !important;
+}
+
+.pfm-v17-hidden-cost h2 {
+  font-size: clamp(25px, 2vw, 36px) !important;
+}
+
+.pfm-v17-hidden-cost p {
+  font-size: 14.5px !important;
+  line-height: 1.65 !important;
+}
+
+.pfm-v17-hidden-number {
+  padding: 24px !important;
+}
+
+.pfm-v17-hidden-number span {
+  font-size: 14px !important;
+}
+
+.pfm-v17-hidden-number strong {
+  font-size: 52px !important;
+}
+
+/* 成長藍圖導覽 */
+.pfm-v17-blueprint-nav div {
+  gap: 12px !important;
+  margin-top: 20px !important;
+}
+
+.pfm-v17-blueprint-nav span {
+  min-height: 58px !important;
+  padding: 11px !important;
+  font-size: 14px !important;
+}
+
+/* 第四章漏斗與廣告效率 */
+.pfm-v17-funnel-flow {
+  margin-bottom: 18px !important;
+  padding: 15px 18px !important;
+  font-size: 15px !important;
+}
+
+.pfm-v17-funnel-flow p {
+  font-size: 12.8px !important;
+}
+
+.pfm-v17-ad-grade {
+  margin-top: 16px !important;
+  padding: 18px !important;
+  border-radius: 16px !important;
+}
+
+.pfm-v17-ad-grade h4 {
+  font-size: 15px !important;
+}
+
+.pfm-v17-ad-grade strong {
+  font-size: 30px !important;
+}
+
+.pfm-v17-ad-grade p {
+  font-size: 13.5px !important;
+  line-height: 1.55 !important;
+}
+
+/* 雷達圖區 */
+.pfm-v17-radar-layout {
+  grid-template-columns: 1.12fr 1fr !important;
+  gap: 26px !important;
+}
+
+.pfm-v17-radar-card {
+  min-height: 430px !important;
+}
+
+.pfm-v17-radar {
+  width: min(440px, 100%) !important;
+}
+
+.pfm-v17-radar-label {
+  font-size: 16px !important;
+}
+
+.pfm-v17-radar-explain h3 {
+  font-size: 18px !important;
+  margin-bottom: 12px !important;
+}
+
+.pfm-v17-radar-explain dl {
+  gap: 8px !important;
+}
+
+.pfm-v17-radar-explain dl div {
+  padding: 10px 12px !important;
+}
+
+.pfm-v17-radar-explain dt {
+  font-size: 14px !important;
+}
+
+.pfm-v17-radar-explain dd {
+  font-size: 12.5px !important;
+}
+
+.pfm-v17-radar-grade {
+  margin-top: 12px !important;
+  padding: 18px !important;
+}
+
+.pfm-v17-radar-grade strong {
+  font-size: 40px !important;
+}
+
+.pfm-v17-radar-grade p {
+  font-size: 13.5px !important;
+}
+
+/* 90天與CTA */
+.pfm-v17-roadmap article {
+  grid-template-columns: 62px 1fr !important;
+  gap: 14px !important;
+  padding: 16px 18px !important;
+}
+
+.pfm-v17-roadmap b {
+  width: 52px !important;
+  height: 52px !important;
+  font-size: 22px !important;
+}
+
+.pfm-v17-roadmap h4 {
+  font-size: 17px !important;
+}
+
+.pfm-v17-roadmap p,
+.pfm-v17-consultant-grid p {
+  font-size: 13.5px !important;
+  line-height: 1.55 !important;
+}
+
+.pfm-v17-consultant-grid {
+  gap: 16px !important;
+  margin-bottom: 18px !important;
+}
+
+.pfm-v17-consultant-grid article {
+  padding: 18px 20px !important;
+  border-radius: 16px !important;
+}
+
+.pfm-v17-consultant-grid h4 {
+  font-size: 15.5px !important;
+}
+
+.pfm-v17-final-cta {
+  padding: 24px 28px !important;
+  border-radius: 20px !important;
+}
+
+.pfm-v17-final-cta h2 {
+  font-size: clamp(18px, 1.45vw, 24px) !important;
+  line-height: 1.25 !important;
+  white-space: nowrap !important;
+}
+
+.pfm-v17-final-cta p {
+  font-size: 13px !important;
+}
+
+.pfm-v17-final-cta a {
+  min-width: 220px !important;
+  padding: 10px 22px !important;
+  font-size: 14px !important;
+}
+
+/* Responsive reset */
+@media (max-width: 1180px) {
+  .pfm-v17-hero-card,
+  .pfm-v17-section,
+  .pfm-v17-two-col,
+  .pfm-v17-hidden-cost,
+  .pfm-v17-blueprint-nav {
+    width: min(100% - 40px, 920px) !important;
+  }
+
+  .pfm-v17-overview-grid,
+  .pfm-v17-profit-top,
+  .pfm-v17-profit-bottom,
+  .pfm-v17-metric-grid.three,
+  .pfm-v17-metric-grid.four {
+    grid-template-columns: 1fr !important;
+  }
+
+  .pfm-v17-overview-grid .pfm-v17-metric-card,
+  .pfm-v17-overview-grid .pfm-v17-metric-card:nth-child(4),
+  .pfm-v17-overview-grid .pfm-v17-metric-card:nth-child(5) {
+    grid-column: auto !important;
+  }
+
+  .pfm-v17-final-cta h2 {
+    white-space: normal !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .pfm-v17-result-page {
+    padding: 28px 0 64px !important;
+  }
+
+  .pfm-v17-hero-card,
+  .pfm-v17-section,
+  .pfm-v17-hidden-cost,
+  .pfm-v17-blueprint-nav {
+    width: calc(100% - 24px) !important;
+    padding: 22px 18px !important;
+  }
+
+  .pfm-v17-metric-card,
+  .pfm-v17-profit-top .pfm-v17-metric-card,
+  .pfm-v17-profit-bottom .pfm-v17-metric-card,
+  .pfm-v17-overview-grid .pfm-v17-metric-card {
+    min-height: auto !important;
+  }
+
+  .pfm-v17-metric-desc {
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+  }
+
+  .pfm-v17-tip {
+    min-height: auto !important;
+  }
+}
+
+
+
+/* =========================================================
+   PFM Result Page V18.1 Final Override
+   - 整體比例縮小
+   - 顧問提示固定成獨立色塊
+   - 總覽與第一章桌機排版修正
+   - 隱形成本標題金色
+   - 本章重點改淡酒紅底
+========================================================= */
+
+.pfm-v17-result-page {
+  padding: 34px 0 64px !important;
+  font-size: 14px !important;
+}
+
+.pfm-v17-hero-card,
+.pfm-v17-section,
+.pfm-v17-two-col,
+.pfm-v17-hidden-cost,
+.pfm-v17-blueprint-nav {
+  width: min(1120px, calc(100% - 72px)) !important;
+}
+
+/* 主視覺再收斂 */
+.pfm-v17-hero-card {
+  min-height: 260px !important;
+  padding: 30px 38px !important;
+  gap: 34px !important;
+  border-radius: 28px !important;
+}
+
+.pfm-v17-hero-copy h1 {
+  font-size: clamp(30px, 2.55vw, 44px) !important;
+  margin-bottom: 16px !important;
+}
+
+.pfm-v17-hero-copy p:not(.pfm-v17-eyebrow) {
+  font-size: 14px !important;
+  line-height: 1.55 !important;
+}
+
+.pfm-v17-stage-card {
+  min-height: 210px !important;
+  padding: 24px !important;
+  border-radius: 23px !important;
+}
+
+.pfm-v17-stage-card strong {
+  font-size: 42px !important;
+}
+
+.pfm-v17-score-circle {
+  width: 96px !important;
+  height: 96px !important;
+  font-size: 27px !important;
+}
+
+/* 區塊與標題比例 */
+.pfm-v17-section,
+.pfm-v17-blueprint-nav {
+  margin-top: 20px !important;
+  padding: 26px 30px !important;
+  border-radius: 22px !important;
+}
+
+.pfm-v17-section h2,
+.pfm-v17-blueprint-nav h2,
+.pfm-v17-list-card h2 {
+  font-size: clamp(23px, 1.5vw, 29px) !important;
+  margin: 6px 0 10px !important;
+}
+
+.pfm-v17-section-subtitle,
+.pfm-v17-blueprint-nav > p:not(.pfm-v17-eyebrow),
+.pfm-v17-list-card > p {
+  font-size: 13.5px !important;
+  line-height: 1.5 !important;
+  margin-bottom: 18px !important;
+}
+
+/* 指標卡統一縮小 */
+.pfm-v17-metric-card,
+.pfm-v17-profit-top .pfm-v17-metric-card,
+.pfm-v17-profit-bottom .pfm-v17-metric-card,
+.pfm-v17-metric-grid.three .pfm-v17-metric-card,
+.pfm-v17-metric-grid.four .pfm-v17-metric-card,
+.pfm-v17-overview-grid .pfm-v17-metric-card {
+  min-height: 184px !important;
+  padding: 14px 16px !important;
+  border-radius: 17px !important;
+}
+
+.pfm-v17-metric-head {
+  margin-bottom: 10px !important;
+}
+
+.pfm-v17-icon-badge {
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 11px !important;
+  font-size: 16px !important;
+}
+
+.pfm-v17-metric-head h4 {
+  font-size: 14px !important;
+  line-height: 1.15 !important;
+}
+
+.pfm-v17-metric-value {
+  font-size: clamp(25px, 1.7vw, 33px) !important;
+  margin-bottom: 7px !important;
+}
+
+.pfm-v17-metric-desc {
+  font-size: 12px !important;
+  line-height: 1.25 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+/* 顧問提示：獨立色塊、等高、圖示靠左置中 */
+.pfm-v17-tip {
+  min-height: 60px !important;
+  margin-top: auto !important;
+  display: grid !important;
+  grid-template-columns: 22px 1fr !important;
+  gap: 8px !important;
+  align-items: center !important;
+  padding: 9px 10px !important;
+  background: linear-gradient(135deg, #fff5dc, #f5e5bf) !important;
+  border: 1px solid rgba(214, 167, 70, 0.34) !important;
+  border-radius: 12px !important;
+}
+
+.pfm-v17-tip-icon {
+  display: grid !important;
+  place-items: center !important;
+  font-size: 15px !important;
+}
+
+.pfm-v17-tip p {
+  font-size: 12px !important;
+  line-height: 1.35 !important;
+  font-weight: 650 !important;
+}
+
+/* 獲利健康度總覽：像第一章一樣，桌機五張平均、整齊不放大 */
+.pfm-v17-overview-grid {
+  display: grid !important;
+  grid-template-columns: repeat(5, minmax(0, 1fr)) !important;
+  gap: 14px !important;
+  align-items: stretch !important;
+}
+
+.pfm-v17-overview-grid .pfm-v17-metric-card,
+.pfm-v17-overview-grid .pfm-v17-metric-card:nth-child(4),
+.pfm-v17-overview-grid .pfm-v17-metric-card:nth-child(5) {
+  grid-column: auto !important;
+}
+
+/* 第一章：本月營收最大，毛利淨利同列，其他第二列 */
+.pfm-v17-profit-top {
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr) minmax(0, 1fr) !important;
+  gap: 14px !important;
+  margin-bottom: 14px !important;
+}
+
+.pfm-v17-profit-bottom {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 14px !important;
+}
+
+.pfm-v17-metric-card.is-revenue {
+  min-height: 184px !important;
+}
+
+.pfm-v17-metric-card.is-revenue .pfm-v17-metric-value {
+  font-size: clamp(38px, 3vw, 52px) !important;
+}
+
+/* 本章重點發現：淡酒紅，不再偏白 */
+.pfm-v17-insight-box {
+  background: linear-gradient(135deg, rgba(122, 16, 32, 0.08), rgba(255, 246, 230, 0.62)) !important;
+  border-color: rgba(122, 16, 32, 0.18) !important;
+}
+
+.pfm-v17-insight-box h4 {
+  color: #780d1e !important;
+}
+
+/* 隱形成本提醒標題改金色 */
+.pfm-v17-hidden-cost .pfm-v17-eyebrow {
+  color: #f1cf64 !important;
+}
+
+.pfm-v17-hidden-cost {
+  padding: 30px 36px !important;
+  border-radius: 24px !important;
+}
+
+.pfm-v17-hidden-cost h2 {
+  font-size: clamp(24px, 1.75vw, 32px) !important;
+}
+
+.pfm-v17-hidden-number strong {
+  font-size: 46px !important;
+}
+
+/* 第二章～第四章指標卡固定高度，避免高低不一 */
+.pfm-v17-metric-grid.three,
+.pfm-v17-metric-grid.four {
+  gap: 14px !important;
+}
+
+.pfm-v17-metric-grid.three .pfm-v17-metric-card,
+.pfm-v17-metric-grid.four .pfm-v17-metric-card {
+  min-height: 184px !important;
+}
+
+/* 第五章雷達圖微放大但整區收斂 */
+.pfm-v17-radar-layout {
+  grid-template-columns: 1.08fr 1fr !important;
+  gap: 22px !important;
+}
+
+.pfm-v17-radar-card {
+  min-height: 390px !important;
+}
+
+.pfm-v17-radar {
+  width: min(410px, 100%) !important;
+}
+
+.pfm-v17-radar-explain dl div {
+  padding: 9px 11px !important;
+}
+
+.pfm-v17-radar-grade strong {
+  font-size: 36px !important;
+}
+
+/* 第七章 CTA：單行、小字級 */
+.pfm-v17-final-cta {
+  padding: 22px 28px !important;
+  border-radius: 20px !important;
+}
+
+.pfm-v17-final-cta h2 {
+  font-size: clamp(18px, 1.35vw, 24px) !important;
+  line-height: 1.25 !important;
+  white-space: nowrap !important;
+  margin-bottom: 12px !important;
+}
+
+.pfm-v17-final-cta p {
+  font-size: 12.5px !important;
+}
+
+.pfm-v17-final-cta a {
+  min-width: 210px !important;
+  padding: 9px 20px !important;
+  font-size: 13px !important;
+}
+
+/* 桌機 100% 下避免整份報告過大 */
+@media (min-width: 1181px) {
+  .pfm-v17-result-page {
+    zoom: 0.94;
+  }
+}
+
+/* 平板以下回到單欄，避免變形 */
+@media (max-width: 1180px) {
+  .pfm-v17-hero-card,
+  .pfm-v17-section,
+  .pfm-v17-two-col,
+  .pfm-v17-hidden-cost,
+  .pfm-v17-blueprint-nav {
+    width: min(100% - 40px, 900px) !important;
+  }
+
+  .pfm-v17-overview-grid,
+  .pfm-v17-profit-top,
+  .pfm-v17-profit-bottom,
+  .pfm-v17-metric-grid.three,
+  .pfm-v17-metric-grid.four {
+    grid-template-columns: 1fr !important;
+  }
+
+  .pfm-v17-metric-card,
+  .pfm-v17-overview-grid .pfm-v17-metric-card,
+  .pfm-v17-profit-top .pfm-v17-metric-card,
+  .pfm-v17-profit-bottom .pfm-v17-metric-card {
+    min-height: auto !important;
+  }
+
+  .pfm-v17-final-cta h2 {
+    white-space: normal !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .pfm-v17-result-page {
+    zoom: 1;
+    padding: 24px 0 64px !important;
+  }
+
+  .pfm-v17-hero-card,
+  .pfm-v17-section,
+  .pfm-v17-hidden-cost,
+  .pfm-v17-blueprint-nav,
+  .pfm-v17-two-col {
+    width: calc(100% - 24px) !important;
+    padding: 22px 18px !important;
+  }
+
+  .pfm-v17-section h2,
+  .pfm-v17-blueprint-nav h2,
+  .pfm-v17-list-card h2 {
+    font-size: 28px !important;
+  }
+
+  .pfm-v17-metric-value {
+    font-size: 34px !important;
+  }
+
+  .pfm-v17-metric-card.is-revenue .pfm-v17-metric-value {
+    font-size: 44px !important;
+  }
+
+  .pfm-v17-metric-desc {
+    white-space: normal !important;
+  }
+
+  .pfm-v17-tip {
+    min-height: auto !important;
+  }
+}
+
+/* =========================================================
+   V18.2 獲利健康度總覽：依重要程度 3+2 排版
+   第一排：毛利率、淨利率、回流率
+   第二排：客單價、金流手續費率
+   ========================================================= */
+.pfm-v18-overview-core-row,
+.pfm-v18-overview-support-row {
+  display: grid !important;
+  gap: 16px !important;
+  align-items: stretch !important;
+}
+
+.pfm-v18-overview-core-row {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  margin-top: 22px !important;
+}
+
+.pfm-v18-overview-support-row {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  width: min(68%, 760px) !important;
+  margin: 16px auto 0 !important;
+}
+
+.pfm-v18-overview-core-row .pfm-v17-metric-card,
+.pfm-v18-overview-support-row .pfm-v17-metric-card {
+  min-height: 215px !important;
+}
+
+.pfm-v18-overview-core-row .pfm-v17-metric-value,
+.pfm-v18-overview-support-row .pfm-v17-metric-value {
+  font-size: clamp(30px, 2.35vw, 42px) !important;
+}
+
+/* 停用舊版五格平均 / nth-child 定位對新結構的影響 */
+.pfm-v17-overview-grid {
+  display: none !important;
+}
+
+@media (max-width: 980px) {
+  .pfm-v18-overview-core-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .pfm-v18-overview-support-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .pfm-v18-overview-core-row,
+  .pfm-v18-overview-support-row {
+    grid-template-columns: 1fr !important;
+    width: 100% !important;
+    gap: 14px !important;
+  }
+
+  .pfm-v18-overview-core-row .pfm-v17-metric-card,
+  .pfm-v18-overview-support-row .pfm-v17-metric-card {
+    min-height: auto !important;
+  }
+}
