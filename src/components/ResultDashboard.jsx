@@ -246,10 +246,13 @@ export default function ResultDashboard({ result = {}, formData = {}, onRestart 
       </section>
 
       <Section title="獲利健康度總覽" subtitle="先看最直接影響獲利與經營穩定度的核心指標。" className="pfm-v17-overview-section">
-        <div className="pfm-v17-overview-grid">
+        <div className="pfm-v18-overview-core-row">
           <MetricCard icon="💰" label="毛利率" value={fmtPercent(grossMargin)} grade={profitGrade} desc="服務定價與成本控制。" tip="毛利率維持在健康區間，代表目前服務定價與直接成本控制有基礎。" />
           <MetricCard icon="📈" label="淨利率" value={fmtPercent(netMargin)} grade={netGrade} desc="真正留下的獲利能力。" tip="淨利率是能否持續成長的核心，數值越穩定代表經營體質越健康。" />
           <MetricCard icon="🔁" label="回流率" value={fmtPercent(returningRate)} grade={returnGrade} desc="顧客再次消費比例。" tip="回流率是美業獲利關鍵，建議持續建立固定回訪與會員機制。" />
+        </div>
+
+        <div className="pfm-v18-overview-support-row">
           <MetricCard icon="💳" label="客單價" value={fmtMoney(avgTicket)} grade={avgTicketGrade} desc="單次消費金額與服務價值。" tip="客單價反映服務價值與組合設計，可搭配加購與套票提升。" />
           <MetricCard icon="🏦" label="金流手續費率" value={fmtPercent(paymentFeeRate)} grade={feeGrade} desc="非現金收款平台成本占營收比例。" tip="金流費用不一定會被第一時間感覺到，但會直接影響實際留下來的淨利。" />
         </div>
