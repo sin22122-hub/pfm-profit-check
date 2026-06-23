@@ -1180,3 +1180,308 @@
     font-size: 26px !important;
   }
 }
+
+/* =========================================================
+   PFM Result Page V17 Professional Report Refinement
+   字體縮小、卡片壓縮、第一章重排、顧問提示、雷達圖/CTA調整
+========================================================= */
+
+.pfm-result-page.pfm-v15-report {
+  width: min(1120px, calc(100% - 32px));
+  margin: 34px auto 68px;
+}
+
+.pfm-v15-section,
+.pfm-v15-blueprint,
+.pfm-v15-blueprint-nav,
+.pfm-v15-unlock,
+.pfm-v15-hidden-cost {
+  padding: 26px 28px;
+  margin-bottom: 18px;
+  border-radius: 24px;
+}
+
+.pfm-v15-section-head { margin-bottom: 18px; }
+
+.pfm-v15-section-head h2,
+.pfm-v15-hidden-cost h2,
+.pfm-v15-unlock h2,
+.pfm-v15-blueprint-nav h2,
+.pfm-v15-cta h3 {
+  font-size: clamp(24px, 1.95vw, 32px) !important;
+  line-height: 1.25 !important;
+  letter-spacing: -0.02em;
+}
+
+.pfm-v15-section-head p,
+.pfm-v15-blueprint-nav p,
+.pfm-v15-rank-card p,
+.pfm-v15-finding p,
+.pfm-v15-hidden-cost p,
+.pfm-v15-unlock p,
+.pfm-v15-cta p,
+.pfm-v15-consult-grid p,
+.pfm-v15-roadmap-step p,
+.pfm-v15-ad-insight p,
+.pfm-v15-radar-summary p,
+.pfm-v15-radar-summary span {
+  font-size: .9rem !important;
+  line-height: 1.65 !important;
+}
+
+.pfm-v15-metric-grid { gap: 12px; }
+.pfm-v15-metric-grid.five { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.pfm-v15-metric-grid.four { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.pfm-v15-metric-grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+.pfm-v15-metric {
+  min-height: 148px;
+  padding: 15px 16px;
+}
+
+.pfm-v15-card-top {
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.pfm-v15-icon {
+  width: 32px;
+  height: 32px;
+  flex-basis: 32px;
+  border-radius: 11px;
+  font-size: .95rem;
+}
+
+.pfm-v15-card-top p {
+  font-size: .94rem;
+  line-height: 1.22;
+}
+
+.pfm-v15-card-top em {
+  margin-top: 4px;
+  padding: 2px 7px;
+  font-size: .7rem;
+}
+
+.pfm-v15-metric strong {
+  font-size: clamp(24px, 2.25vw, 34px) !important;
+  line-height: 1.03 !important;
+  letter-spacing: -0.025em;
+  white-space: nowrap;
+  overflow-wrap: normal;
+}
+
+.pfm-v15-metric small {
+  margin-top: 8px;
+  font-size: .78rem;
+  line-height: 1.45;
+}
+
+.pfm-v17-metric-tip {
+  margin-top: 10px;
+  padding: 9px 10px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, rgba(214,167,70,.11), rgba(255,255,255,.65));
+  color: #687771;
+  font-size: .76rem;
+  line-height: 1.45;
+  border: 1px solid rgba(214,167,70,.16);
+}
+
+.pfm-v15-finding {
+  padding: 18px 22px !important;
+  border-radius: 18px;
+}
+
+.pfm-v15-finding strong,
+.pfm-v15-finding h4 {
+  font-size: 1rem !important;
+  margin-bottom: 8px !important;
+}
+
+/* 第一章：營收/毛利/淨利放第一列，成本率放第二列 */
+.pfm-v17-profit-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.pfm-v17-profit-top {
+  display: grid;
+  grid-template-columns: 1.55fr 1fr 1fr;
+  gap: 12px;
+  align-items: stretch;
+}
+
+.pfm-v17-profit-bottom {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.pfm-v17-revenue-card {
+  min-height: 156px;
+}
+
+.pfm-v17-revenue-card strong {
+  font-size: clamp(34px, 3.4vw, 48px) !important;
+}
+
+/* 問題/優勢區壓縮 */
+.pfm-v15-split-grid { gap: 18px; }
+.pfm-v15-rank-list { gap: 12px; }
+.pfm-v15-rank-card {
+  grid-template-columns: 38px 1fr;
+  gap: 12px;
+  padding: 13px 15px;
+  border-radius: 18px;
+}
+.pfm-v15-rank-card span {
+  width: 34px;
+  height: 34px;
+  font-size: .88rem;
+}
+.pfm-v15-rank-card strong { font-size: .98rem; }
+.pfm-v15-rank-card p { margin-top: 3px; }
+
+/* 第四章：避免漏斗像按鈕，改為精簡流程提示 */
+.pfm-v16-funnel-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(90,8,21,.035), rgba(214,167,70,.08));
+}
+.pfm-v16-funnel-note span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 66px;
+  height: 34px;
+  padding: 0 12px;
+  border-radius: 999px;
+  color: var(--pfm-wine) !important;
+  font-size: .88rem;
+  font-weight: 900;
+  border: 1px solid rgba(214,167,70,.26);
+  background: rgba(255,255,255,.72);
+}
+.pfm-v16-funnel-note p {
+  flex-basis: 100%;
+  text-align: center;
+  font-size: .82rem !important;
+  margin-top: 2px;
+}
+
+.pfm-v15-ad-insight {
+  padding: 18px 20px;
+  border-radius: 18px;
+}
+.pfm-v15-ad-insight strong { font-size: clamp(28px, 3vw, 40px) !important; }
+.pfm-v15-ad-insight em { font-size: 1rem; }
+
+/* 第五章雷達圖放大，資料來源保留但更精簡 */
+.pfm-v16-radar-layout {
+  grid-template-columns: minmax(440px, 1.05fr) minmax(290px, .65fr);
+  gap: 22px;
+  align-items: stretch;
+}
+.pfm-v15-radar-card { min-height: 440px; }
+.pfm-v15-radar-svg { width: min(370px, 84%); }
+.pfm-v15-radar-label { font-size: .82rem; }
+.pfm-v16-radar-summary { padding: 24px; min-height: 200px; }
+.pfm-v16-radar-summary strong { font-size: clamp(34px, 4vw, 50px) !important; }
+.pfm-v16-radar-source {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 9px;
+  margin-top: 14px;
+}
+.pfm-v16-radar-source article {
+  padding: 10px;
+  border-radius: 14px;
+}
+.pfm-v16-radar-source strong { font-size: .86rem; }
+.pfm-v16-radar-source span { font-size: .72rem; line-height: 1.4; }
+
+/* 第六章與第七章壓縮 */
+.pfm-v15-roadmap { gap: 12px; }
+.pfm-v15-roadmap-step {
+  grid-template-columns: 52px 1fr;
+  gap: 14px;
+  padding: 16px 18px;
+  border-radius: 18px;
+}
+.pfm-v15-step-number {
+  width: 44px;
+  height: 44px;
+  font-size: 1rem;
+}
+.pfm-v15-roadmap-step h3 { margin: 5px 0 4px; font-size: 1rem; }
+
+.pfm-v15-consult-grid { gap: 12px; }
+.pfm-v15-consult-grid article { padding: 18px; border-radius: 18px; }
+.pfm-v15-consult-grid h3 { font-size: 1rem; }
+
+.pfm-v16-cta {
+  padding: 24px 26px !important;
+  border-radius: 22px;
+}
+.pfm-v16-cta h3 {
+  max-width: 1080px;
+  margin: 0 auto 10px;
+  font-size: clamp(22px, 2.05vw, 32px) !important;
+  line-height: 1.28 !important;
+  white-space: nowrap;
+}
+.pfm-v16-cta p {
+  margin-bottom: 14px;
+  font-size: .9rem !important;
+}
+.pfm-v16-cta .btn {
+  min-width: 230px;
+  padding: 10px 22px;
+}
+
+@media (max-width: 1180px) {
+  .pfm-v15-metric-grid.five { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .pfm-v17-profit-top { grid-template-columns: 1fr 1fr; }
+  .pfm-v17-revenue-card { grid-column: 1 / -1; }
+  .pfm-v17-profit-bottom { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pfm-v16-radar-source { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 980px) {
+  .pfm-v17-profit-top,
+  .pfm-v17-profit-bottom,
+  .pfm-v15-metric-grid.five,
+  .pfm-v15-metric-grid.four,
+  .pfm-v15-metric-grid.three,
+  .pfm-v16-radar-layout {
+    grid-template-columns: 1fr;
+  }
+  .pfm-v15-metric strong { white-space: normal; }
+  .pfm-v16-cta h3 { white-space: normal; }
+}
+
+@media (max-width: 640px) {
+  .pfm-v15-section,
+  .pfm-v15-blueprint,
+  .pfm-v15-blueprint-nav,
+  .pfm-v15-unlock,
+  .pfm-v15-hidden-cost {
+    padding: 20px;
+  }
+  .pfm-v15-section-head h2,
+  .pfm-v15-hidden-cost h2,
+  .pfm-v15-unlock h2,
+  .pfm-v15-blueprint-nav h2 {
+    font-size: 26px !important;
+  }
+  .pfm-v15-metric { min-height: auto; }
+  .pfm-v17-metric-tip { font-size: .74rem; }
+  .pfm-v15-radar-card { min-height: 390px; }
+  .pfm-v15-radar-svg { width: min(320px, 84%); }
+}
