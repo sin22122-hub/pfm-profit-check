@@ -433,14 +433,16 @@ export default function ResultDashboard({ result, formData = {}, onRestart }) {
             intro="流量進來後，有沒有成功變成客戶？CPA 用來看每成交一位客人的廣告成本；ROAS 用來看每 1 元廣告費帶回多少營收。"
             className="pfm-v15-ad-chapter"
           >
-            <div className="pfm-v15-funnel">
+            <div className="pfm-v16-funnel-note">
+              <strong>轉換路徑</strong>
               <span>曝光</span>
-              <b />
+              <b>→</b>
               <span>詢問</span>
-              <b />
+              <b>→</b>
               <span>預約</span>
-              <b />
+              <b>→</b>
               <span>成交</span>
+              <p>目前以 CPA、ROAS 與金流手續費率作為轉換效率的主要代理指標。</p>
             </div>
 
             <div className="pfm-v15-metric-grid three">
@@ -462,14 +464,22 @@ export default function ResultDashboard({ result, formData = {}, onRestart }) {
           </Chapter>
 
           <Chapter number="五" icon="⭐" title="成長潛力藍圖" intro="用五個面向快速看見目前店家的經營輪廓與下一步放大方向。">
-            <div className="pfm-v15-radar-layout">
+            <div className="pfm-v15-radar-layout pfm-v16-radar-layout">
               <RadarChart result={effectiveResult} />
-              <div className="pfm-v15-radar-summary">
+              <div className="pfm-v15-radar-summary pfm-v16-radar-summary">
                 <p>綜合評級</p>
                 <strong>{growthLevel}</strong>
                 <em>{getStars(growthLevel)}</em>
                 <span>{display(effectiveResult.growthOpportunity)}</span>
               </div>
+            </div>
+
+            <div className="pfm-v16-radar-source">
+              <article><strong>獲利能力</strong><span>對應第一章：毛利率、淨利率</span></article>
+              <article><strong>客戶經營</strong><span>對應第二章：客戶經營力、回流率</span></article>
+              <article><strong>流量能力</strong><span>對應第三章：社群經營度、內容執行力</span></article>
+              <article><strong>成交能力</strong><span>對應第四章：ROAS、CPA、廣告效率</span></article>
+              <article><strong>品牌成熟</strong><span>對應第三章：數位成熟度與經營基礎</span></article>
             </div>
           </Chapter>
 
@@ -493,7 +503,7 @@ export default function ResultDashboard({ result, formData = {}, onRestart }) {
               </article>
             </div>
 
-            <div className="pfm-v15-cta no-print">
+            <div className="pfm-v15-cta pfm-v16-cta no-print">
               <h3>你的店並不缺努力，而是缺少一套看得懂數字的經營系統。</h3>
               <p>{display(effectiveResult.nextAction)}</p>
               <a className="btn" href={BOOKING_URL || '#'} target="_blank" rel="noreferrer">
