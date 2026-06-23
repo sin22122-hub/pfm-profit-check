@@ -247,11 +247,11 @@ export default function ResultDashboard({ result = {}, formData = {}, onRestart 
 
       <Section title="獲利健康度總覽" subtitle="先看最直接影響獲利與經營穩定度的核心指標。" className="pfm-v17-overview-section">
         <div className="pfm-v17-overview-grid">
-          <MetricCard icon="💰" label="毛利率" value={fmtPercent(grossMargin)} grade={profitGrade} desc="代表服務定價與成本控制能力。" tip="毛利率維持在健康區間，代表目前服務定價與直接成本控制有基礎。" />
+          <MetricCard icon="💰" label="毛利率" value={fmtPercent(grossMargin)} grade={profitGrade} desc="服務定價與成本控制能力。" tip="毛利率維持在健康區間，代表目前服務定價與直接成本控制有基礎。" />
           <MetricCard icon="📈" label="淨利率" value={fmtPercent(netMargin)} grade={netGrade} desc="真正留下來的獲利能力。" tip="淨利率是能否持續成長的核心，數值越穩定代表經營體質越健康。" />
-          <MetricCard icon="🔁" label="回流率" value={fmtPercent(returningRate)} grade={returnGrade} desc="客戶是否願意再次回來消費。" tip="回流率是美業獲利關鍵，建議持續建立固定回訪與會員機制。" />
+          <MetricCard icon="🔁" label="回流率" value={fmtPercent(returningRate)} grade={returnGrade} desc="顧客再次消費比例。" tip="回流率是美業獲利關鍵，建議持續建立固定回訪與會員機制。" />
           <MetricCard icon="💳" label="客單價" value={fmtMoney(avgTicket)} grade={avgTicketGrade} desc="單次消費金額與服務價值。" tip="客單價反映服務價值與組合設計，可搭配加購與套票提升。" />
-          <MetricCard icon="🏦" label="金流手續費率" value={fmtPercent(paymentFeeRate)} grade={feeGrade} desc="隱形成本是否正在侵蝕淨利。" tip="金流費用不一定會被第一時間感覺到，但會直接影響實際留下來的淨利。" />
+          <MetricCard icon="🏦" label="金流手續費率" value={fmtPercent(paymentFeeRate)} grade={feeGrade} desc="隱形成本占營收比例。" tip="金流費用不一定會被第一時間感覺到，但會直接影響實際留下來的淨利。" />
         </div>
       </Section>
 
@@ -305,14 +305,14 @@ export default function ResultDashboard({ result = {}, formData = {}, onRestart 
       <Section chapter="第一章" icon="💰" title="獲利結構分析" subtitle="獲利不是只看營收，而是看毛利、淨利與成本是否能留下錢。" className="pfm-v17-profit-section">
         <div className="pfm-v17-profit-top">
           <MetricCard className="is-revenue" icon="💵" label="本月營收" value={fmtMoney(totalRevenue)} desc="營收代表規模，但需搭配毛利與淨利一起看。" tip="營收代表規模，但需要搭配毛利與淨利判斷是否真的有留下錢。" />
-          <MetricCard icon="📈" label="毛利率" value={fmtPercent(grossMargin)} grade={profitGrade} desc="代表服務定價與成本控制能力。" tip="毛利率維持在80%以上，顯示定價策略與成本控管具備健康基礎。" />
-          <MetricCard icon="💎" label="淨利率" value={fmtPercent(netMargin)} grade={netGrade} desc="代表真正的獲利能力。" tip="淨利率表現穩定，代表營運模式能有效轉化為淨利。" />
+          <MetricCard icon="📈" label="毛利率" value={fmtPercent(grossMargin)} grade={profitGrade} desc="服務定價與成本控制能力。" tip="毛利率維持在80%以上，顯示定價策略與成本控管具備健康基礎。" />
+          <MetricCard icon="💎" label="淨利率" value={fmtPercent(netMargin)} grade={netGrade} desc="真正留下的獲利能力。" tip="淨利率表現穩定，代表營運模式能有效轉化為淨利。" />
         </div>
         <div className="pfm-v17-profit-bottom">
-          <MetricCard icon="👤" label="人事成本率" value={fmtPercent(laborRate)} grade={laborGrade} desc="人事成本控制能力。" tip="人事成本控制得宜，建議可持續投資人才以支持業務成長。" />
-          <MetricCard icon="🏢" label="租金率" value={fmtPercent(rentRate)} grade={rentGrade} desc="租金水準與營收匹配度。" tip="租金占比在合理範圍內，持續維持現況有助於獲利穩定。" />
-          <MetricCard icon="📣" label="廣告率" value={fmtPercent(adRate)} grade={adGrade} desc="行銷投資效率。" tip="廣告投資占比偏高時，建議優化廣告策略以提升投資報酬率（ROAS）。" />
-          <MetricCard icon="💳" label="金流手續費率" value={fmtPercent(paymentFeeRate)} grade={feeGrade} desc="支付成本控制。" tip="金流費用占比偏高，可評估更優惠的金流方案以降低成本。" />
+          <MetricCard icon="👤" label="人事成本率" value={fmtPercent(laborRate)} grade={laborGrade} desc="人力成本控制能力。" tip="人事成本控制得宜，建議可持續投資人才以支持業務成長。" />
+          <MetricCard icon="🏢" label="租金率" value={fmtPercent(rentRate)} grade={rentGrade} desc="租金與營收匹配度。" tip="租金占比在合理範圍內，持續維持現況有助於獲利穩定。" />
+          <MetricCard icon="📣" label="廣告率" value={fmtPercent(adRate)} grade={adGrade} desc="行銷投資占營收比例。" tip="廣告投資占比偏高時，建議優化廣告策略以提升投資報酬率（ROAS）。" />
+          <MetricCard icon="💳" label="金流手續費率" value={fmtPercent(paymentFeeRate)} grade={feeGrade} desc="支付與收款成本。" tip="金流費用占比偏高，可評估更優惠的金流方案以降低成本。" />
         </div>
         <div className="pfm-v17-standard-box">
           <h4>評級基準說明</h4>
@@ -324,19 +324,19 @@ export default function ResultDashboard({ result = {}, formData = {}, onRestart 
       <Section chapter="第二章" icon="👥" title="客戶經營分析" subtitle="回流、新客與介紹客的比例，會決定你是靠穩定經營，還是一直追新客。">
         <div className="pfm-v17-metric-grid four">
           <MetricCard icon="👤" label="新客率" value={fmtPercent(newCustomerRate)} desc="新客開發能力。" tip="新客率代表開發能力，但若過高且回流偏低，可能表示經營仍依賴不斷找新客。" />
-          <MetricCard icon="🔁" label="回流率" value={fmtPercent(returningRate)} grade={returnGrade} desc="客戶是否再次消費。" tip="回流率是美業穩定獲利的關鍵，建議建立固定回訪提醒與會員標籤。" />
+          <MetricCard icon="🔁" label="回流率" value={fmtPercent(returningRate)} grade={returnGrade} desc="顧客戶再次消費比例。" tip="回流率是美業穩定獲利的關鍵，建議建立固定回訪提醒與會員標籤。" />
           <MetricCard icon="🤝" label="介紹客比例" value={fmtPercent(referralRate)} desc="信任與口碑來源。" tip="介紹客代表信任與口碑，若比例穩定，可放大成轉介紹機制。" />
-          <MetricCard icon="🏆" label="客戶經營力" value={`${fmtNumber(customerPower, 2)} / 10`} grade={customerPowerGrade} desc="回購、轉介紹與長期營收穩定度。" tip="客戶經營力會影響回購、轉介紹與長期營收穩定度。" />
+          <MetricCard icon="🏆" label="客戶經營力" value={`${fmtNumber(customerPower, 2)} / 10`} grade={customerPowerGrade} desc="顧客經營成熟程度。" tip="客戶經營力會影響回購、轉介紹與長期營收穩定度。" />
         </div>
         <InsightBox>客戶經營的重點不只是新客，而是讓顧客願意再次回來、願意介紹，進一步降低獲客壓力與廣告依賴。</InsightBox>
       </Section>
 
       <Section chapter="第三章" icon="📣" title="流量與內容能力" subtitle="PFM 不鼓勵盲目投廣告，而是先看目前是否具備自然流量與內容經營基礎。">
         <div className="pfm-v17-metric-grid four">
-          <MetricCard icon="📱" label="社群經營度" value={fmtNumber(socialScore, 2)} desc="自然曝光與經營基礎。" tip="社群經營度反映自然曝光基礎，穩定內容能降低未來獲客成本。" />
-          <MetricCard icon="✍️" label="內容執行力" value={fmtNumber(contentScore, 2)} desc="能否持續讓顧客理解你的服務價值。" tip="內容執行力代表能否持續讓潛在顧客理解服務價值。" />
-          <MetricCard icon="🌐" label="數位成熟度" value={fmtNumber(digitalScore, 2)} desc="預約流程與顧客管理效率。" tip="數位成熟度會影響預約流程、顧客管理與後續放大效率。" />
-          <MetricCard icon="📊" label="數位成熟度評級" value={digitalGrade} desc="內容與系統化基礎評估。" tip="若評級偏弱，建議先建立固定內容節奏與基本顧客資料管理。" />
+          <MetricCard icon="📱" label="社群經營度" value={fmtNumber(socialScore, 2)} desc="自然曝光與社群基礎。" tip="社群經營度反映自然曝光基礎，穩定內容能降低未來獲客成本。" />
+          <MetricCard icon="✍️" label="內容執行力" value={fmtNumber(contentScore, 2)} desc="內容持續產出能力。" tip="內容執行力代表能否持續讓潛在顧客理解服務價值。" />
+          <MetricCard icon="🌐" label="數位成熟度" value={fmtNumber(digitalScore, 2)} desc="數位化管理程度。" tip="數位成熟度會影響預約流程、顧客管理與後續放大效率。" />
+          <MetricCard icon="📊" label="數位成熟度評級" value={digitalGrade} desc="數位經營整體評估。" tip="若評級偏弱，建議先建立固定內容節奏與基本顧客資料管理。" />
         </div>
         <InsightBox>流量與內容能力會影響未來獲客穩定度。若數位成熟度偏弱，建議先建立固定內容節奏，再進一步放大廣告投放。</InsightBox>
       </Section>
@@ -347,8 +347,8 @@ export default function ResultDashboard({ result = {}, formData = {}, onRestart 
           <p>目前以 CPA、ROAS 與金流手續費率作為轉換效率的主要代理指標。</p>
         </div>
         <div className="pfm-v17-metric-grid three">
-          <MetricCard icon="👤" label="CPA" value={cpa > 0 ? Math.round(cpa).toLocaleString('en-US') : '尚無成交資料'} desc="每成交一位客人的廣告總成本。" tip="CPA 可判斷取得一位客人的成本是否過高，需搭配客單價與回流率一起評估。" />
-          <MetricCard icon="📈" label="ROAS" value={roas > 0 ? fmtNumber(roas, 2) : '未投放廣告'} desc="每 1 元廣告成本創造的營收倍數。" tip="ROAS 代表廣告投資回收效率，若偏低應優先檢查素材、受眾與成交流程。" />
+          <MetricCard icon="👤" label="CPA" value={cpa > 0 ? Math.round(cpa).toLocaleString('en-US') : '尚無成交資料'} desc="取得一位成交客成本。" tip="CPA 可判斷取得一位客人的成本是否過高，需搭配客單價與回流率一起評估。" />
+          <MetricCard icon="📈" label="ROAS" value={roas > 0 ? fmtNumber(roas, 2) : '未投放廣告'} desc="每 1 元廣告帶回營收。" tip="ROAS 代表廣告投資回收效率，若偏低應優先檢查素材、受眾與成交流程。" />
           <MetricCard icon="💳" label="金流手續費率" value={fmtPercent(paymentFeeRate)} desc="非現金收款平台成本占營收比例。" tip="金流手續費是容易被忽略的隱形成本，需納入淨利率判斷。" />
         </div>
         <div className="pfm-v17-ad-grade">
