@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 
 function safeNumber(value, fallback = 0) {
   const n = Number(String(value ?? '').replace(/[$,%\s,]/g, ''));
@@ -108,6 +108,47 @@ function InsightBox({ children }) {
   );
 }
 
+
+function stageSummary(score, stage = '') {
+  const s = safeNumber(score);
+  const stageText = String(stage || '');
+  if (stageText.includes('擴張') || s >= 90) return '獲利體質已相對成熟，下一步可放大會員經營、團隊分工與流量規模。';
+  if (stageText.includes('優化') || s >= 80) return '經營模式逐漸穩定，下一步建議優化回流、轉換效率與內容承接系統。';
+  if (stageText.includes('建構') || s >= 70) return '目前已具備成長條件，可開始建立流量、會員與獲利管理系統。';
+  if (s >= 60) return '經營模式尚未完全穩定，建議優先修復獲利結構、回流機制與成本控管。';
+  return '目前營運風險偏高，建議先回到核心數據，優先處理獲利、成本與客戶回流問題。';
+}
+
+function overviewFindings({ profitGrade, netGrade, returnGrade, avgTicketGrade, feeGrade, grossMargin, netMargin, returningRate, avgTicket, paymentFeeRate }) {
+  const findings = [];
+
+  if (profitGrade === '優秀' && netGrade === '優秀') {
+    findings.push(`毛利率 ${fmtPercent(grossMargin)}、淨利率 ${fmtPercent(netMargin)} 表現優秀，代表目前具備健康的獲利基礎。`);
+  } else if (profitGrade === '待改善' || netGrade === '待改善') {
+    findings.push('毛利率或淨利率仍有壓力，建議優先檢視定價、直接成本與固定費用。');
+  } else {
+    findings.push('獲利結構已有基礎，但仍需持續觀察毛利、淨利與成本之間的平衡。');
+  }
+
+  if (returnGrade === '優秀' || returnGrade === '良好') {
+    findings.push(`回流率 ${fmtPercent(returningRate)} 已具備穩定顧客基礎，可進一步設計會員與再購機制。`);
+  } else {
+    findings.push(`回流率 ${fmtPercent(returningRate)} 仍有提升空間，建議建立固定回訪、會員標籤與再購提醒。`);
+  }
+
+  if (avgTicketGrade === '待改善' || avgTicketGrade === '注意') {
+    findings.push(`客單價 ${fmtMoney(avgTicket)} 偏低，建議透過加購、套票、療程組合或高價值服務設計提升單次消費。`);
+  } else {
+    findings.push(`客單價 ${fmtMoney(avgTicket)} 表現穩定，可持續放大高價值服務與組合方案。`);
+  }
+
+  if (feeGrade === '待改善' || feeGrade === '注意') {
+    findings.push(`金流手續費率 ${fmtPercent(paymentFeeRate)} 偏高，建議檢視支付工具、非現金收款比例與平台費率。`);
+  }
+
+  return findings;
+}
+
 function RadarChart({ scores }) {
   const size = 420;
   const cx = size / 2;
@@ -159,6 +200,8 @@ function RadarChart({ scores }) {
 }
 
 export default function ResultDashboard({ result = {}, formData = {}, onRestart }) {
+  const [unlockEmail, setUnlockEmail] = useState('');
+  const [isBlueprintUnlocked, setIsBlueprintUnlocked] = useState(false);
   const data = result || {};
   const storeName = pick(data.storeName, formData.storeName, formData.contactName, '你的店');
   const storeType = pick(data.storeType, formData.storeType, data.businessType, formData.businessType, '美業店家');
@@ -210,6 +253,37 @@ export default function ResultDashboard({ result = {}, formData = {}, onRestart 
   const customerPowerGrade = customerPower >= 8 ? '優秀' : customerPower >= 6 ? '穩定' : customerPower >= 4 ? '注意' : '薄弱';
   const roasGrade = roas >= 8 ? '優秀' : roas >= 5 ? '良好' : roas >= 3 ? '注意' : '偏低';
 
+  const heroSummary = stageSummary(overallScore, growthStage);
+  const overviewInsightList = overviewFindings({
+    profitGrade,
+    netGrade,
+    returnGrade,
+    avgTicketGrade,
+    feeGrade,
+    grossMargin,
+    netMargin,
+    returningRate,
+    avgTicket,
+    paymentFeeRate,
+  });
+
+  const handleUnlockBlueprint = (event) => {
+    event.preventDefault();
+    const email = String(unlockEmail || '').trim();
+    if (!email || !email.includes('@')) {
+      alert('請先輸入正確的 Email，才能解鎖完整成長藍圖。');
+      return;
+    }
+    setIsBlueprintUnlocked(true);
+    setTimeout(() => {
+      document.getElementById('pfm-blueprint-start')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 80);
+  };
+
+  const handleExportPdf = () => {
+    window.print();
+  };
+
   const radarScores = useMemo(() => {
     const profitScore = safeNumber(pick(data.profitScore, data.raw?.B46, data['獲利能力分數']), Math.round((safeNumber(grossMargin) + safeNumber(netMargin)) / 2));
     const customerScore = safeNumber(pick(data.customerMaturityScore, data.raw?.B47, data['客戶經營成熟度分數']), Math.round((returningRate + referralRate + customerPower * 10) / 3));
@@ -230,7 +304,7 @@ export default function ResultDashboard({ result = {}, formData = {}, onRestart 
         <div className="pfm-v17-hero-copy">
           <p className="pfm-v17-eyebrow">PFM 美業獲利健檢結果</p>
           <h1>{storeName}｜經營診斷結果</h1>
-          <p>目前已具備成長條件，可開始建立流量、會員與獲利管理系統。</p>
+          <p>{heroSummary}</p>
           <div className="pfm-v17-tags">
             <span>{storeType}</span>
             <span>{category}</span>
@@ -255,6 +329,12 @@ export default function ResultDashboard({ result = {}, formData = {}, onRestart 
         <div className="pfm-v18-overview-support-row">
           <MetricCard icon="💳" label="客單價" value={fmtMoney(avgTicket)} grade={avgTicketGrade} desc="單次消費金額與服務價值。" tip="客單價反映服務價值與組合設計，可搭配加購與套票提升。" />
           <MetricCard icon="🏦" label="金流手續費率" value={fmtPercent(paymentFeeRate)} grade={feeGrade} desc="非現金收款平台成本占營收比例。" tip="金流費用不一定會被第一時間感覺到，但會直接影響實際留下來的淨利。" />
+        </div>
+        <div className="pfm-v18-overview-findings">
+          <h4>本章重點發現</h4>
+          <ul>
+            {overviewInsightList.map((item) => <li key={item}>{item}</li>)}
+          </ul>
         </div>
       </Section>
 
@@ -296,7 +376,38 @@ export default function ResultDashboard({ result = {}, formData = {}, onRestart 
         </div>
       </section>
 
-      <section className="pfm-v17-blueprint-nav">
+      <section className="pfm-v18-unlock-card" id="pfm-blueprint-unlock">
+        <p className="pfm-v17-eyebrow">免費解鎖</p>
+        <h2>店家成長藍圖已產生</h2>
+        <p>看懂結果只是開始。輸入 Email 後，可查看你的獲利結構、客戶經營、流量內容能力、成長瓶頸與 90 天顧問建議。</p>
+        <div className="pfm-v18-unlock-points" aria-label="解鎖內容">
+          <span>獲利結構分析</span>
+          <span>客戶經營分析</span>
+          <span>流量內容能力</span>
+          <span>廣告效率評估</span>
+          <span>成長潛力藍圖</span>
+          <span>90天改善路徑</span>
+        </div>
+        {!isBlueprintUnlocked ? (
+          <form className="pfm-v18-unlock-form" onSubmit={handleUnlockBlueprint}>
+            <input
+              type="email"
+              value={unlockEmail}
+              onChange={(event) => setUnlockEmail(event.target.value)}
+              placeholder="輸入 Email 免費解鎖完整報告"
+              aria-label="輸入 Email 免費解鎖完整報告"
+            />
+            <button type="submit">免費解鎖完整報告</button>
+          </form>
+        ) : (
+          <div className="pfm-v18-unlocked-note">已解鎖完整成長藍圖，請往下查看完整章節。</div>
+        )}
+        {onRestart && <button className="pfm-v18-restart-link" type="button" onClick={onRestart}>重新健檢</button>}
+      </section>
+
+      {isBlueprintUnlocked && (
+        <>
+      <section className="pfm-v17-blueprint-nav" id="pfm-blueprint-start">
         <p className="pfm-v17-eyebrow">店家成長藍圖</p>
         <h2>從「知道問題」進入「理解原因」</h2>
         <p>以下內容將目前健檢數據整理成顧問視角，協助你看見獲利、客戶、流量與下一步改善方向。</p>
@@ -387,6 +498,10 @@ export default function ResultDashboard({ result = {}, formData = {}, onRestart 
         </div>
       </Section>
 
+      <div className="pfm-v18-pdf-actions">
+        <button type="button" onClick={handleExportPdf}>匯出 PDF 報告</button>
+      </div>
+
       <Section chapter="第七章" icon="🧭" title="顧問診斷結論">
         <div className="pfm-v17-consultant-grid">
           <article><h4>目前狀態</h4><p>{consultantStatus}</p></article>
@@ -399,6 +514,8 @@ export default function ResultDashboard({ result = {}, formData = {}, onRestart 
           <a href="https://line.me/" target="_blank" rel="noreferrer">Line｜預約 PFM 一對一診斷</a>
         </div>
       </Section>
+        </>
+      )}
     </main>
   );
 }
