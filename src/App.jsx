@@ -8,31 +8,31 @@ import { questions } from './data/questions.js';
 import { submitToGoogleForm } from './utils/googleFormApi.js';
 import { fetchDashboardData } from './utils/sheetApi.js';
 
-const PFM_REPORT_STORAGE_KEY = 'pfm_latest_report_v1';
+const PFM_REPORT_STORAGE_KEY = 'pfm_latest_report_v18_session';
 
 const saveReportToStorage = (payload) => {
   try {
-    localStorage.setItem(PFM_REPORT_STORAGE_KEY, JSON.stringify(payload));
+    sessionStorage.setItem(PFM_REPORT_STORAGE_KEY, JSON.stringify(payload));
   } catch (error) {
-    console.warn('PFM report storage save failed:', error);
+    console.warn('PFM report session storage save failed:', error);
   }
 };
 
 const readReportFromStorage = () => {
   try {
-    const raw = localStorage.getItem(PFM_REPORT_STORAGE_KEY);
+    const raw = sessionStorage.getItem(PFM_REPORT_STORAGE_KEY);
     return raw ? JSON.parse(raw) : null;
   } catch (error) {
-    console.warn('PFM report storage read failed:', error);
+    console.warn('PFM report session storage read failed:', error);
     return null;
   }
 };
 
 const clearReportStorage = () => {
   try {
-    localStorage.removeItem(PFM_REPORT_STORAGE_KEY);
+    sessionStorage.removeItem(PFM_REPORT_STORAGE_KEY);
   } catch (error) {
-    console.warn('PFM report storage clear failed:', error);
+    console.warn('PFM report session storage clear failed:', error);
   }
 };
 
