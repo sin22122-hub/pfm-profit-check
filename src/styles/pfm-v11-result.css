@@ -1580,3 +1580,930 @@
     box-shadow: none !important;
   }
 }
+
+/* =========================================================
+   PFM V20 hotfix from current live version
+   1) Email 解鎖改為單一 CTA，不再要求輸入 Email
+   2) 使用 html2pdf.js 匯出完整報告 PDF
+========================================================= */
+.pfm-v18-unlock-form.is-button-only {
+  grid-template-columns: 1fr !important;
+  max-width: 380px !important;
+}
+
+.pfm-v18-unlock-form.is-button-only button {
+  width: 100% !important;
+}
+
+body.pfm-pdf-export-mode .site-header,
+body.pfm-pdf-export-mode .pfm-v18-unlock-card,
+body.pfm-pdf-export-mode .pfm-v18-pdf-actions,
+body.pfm-pdf-export-mode .pfm-v18-restart-link {
+  display: none !important;
+}
+
+body.pfm-pdf-export-mode .pfm-v17-result-page {
+  padding: 0 !important;
+  background: #fffdf8 !important;
+}
+
+body.pfm-pdf-export-mode .pfm-v17-hero-card,
+body.pfm-pdf-export-mode .pfm-v17-section,
+body.pfm-pdf-export-mode .pfm-v17-two-col,
+body.pfm-pdf-export-mode .pfm-v17-hidden-cost,
+body.pfm-pdf-export-mode .pfm-v17-blueprint-nav {
+  width: 100% !important;
+  max-width: 1080px !important;
+  box-shadow: none !important;
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+body.pfm-pdf-export-mode .pfm-v17-section,
+body.pfm-pdf-export-mode .pfm-v17-blueprint-nav,
+body.pfm-pdf-export-mode .pfm-v17-hidden-cost,
+body.pfm-pdf-export-mode .pfm-v17-two-col {
+  margin-top: 18px !important;
+}
+
+/* =========================================================
+   PFM V21 Professional Consultant Edition
+   verified current-project fixes
+   - CTA compact + equal width
+   - consultant summary
+   - problem/strength unique analysis text layout
+   - consistent wine-red consultant insight
+   - vector print/PDF mode
+========================================================= */
+.pfm-v21-consultant-summary {
+  width: min(1180px, calc(100% - 72px));
+  margin: 22px auto 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.pfm-v21-consultant-summary > div {
+  min-height: 150px;
+  padding: 18px 20px;
+  border: 1px solid rgba(214, 167, 70, 0.36);
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(255,253,248,.95), rgba(255,247,234,.78));
+  box-shadow: 0 14px 34px rgba(72, 35, 12, 0.07);
+}
+
+.pfm-v21-consultant-summary span {
+  display: block;
+  margin-bottom: 8px;
+  color: #b33742;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: .08em;
+}
+
+.pfm-v21-consultant-summary strong {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--pfm-ink);
+  font-size: 20px;
+  line-height: 1.25;
+  font-weight: 950;
+}
+
+.pfm-v21-consultant-summary p {
+  margin: 0;
+  color: #5f706c;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.pfm-v18-overview-findings,
+.pfm-v17-insight-box {
+  border-color: rgba(122, 16, 32, 0.24) !important;
+  background: linear-gradient(135deg, #fff8f2, #fffdf8) !important;
+}
+
+.pfm-v18-overview-findings h4,
+.pfm-v17-insight-box h4 {
+  color: #7d1021 !important;
+  font-weight: 950 !important;
+}
+
+.pfm-v18-overview-findings h4::before,
+.pfm-v17-insight-box h4::before {
+  content: '◆';
+  display: inline-block;
+  margin-right: 8px;
+  color: #b33742;
+  font-size: .82em;
+  transform: translateY(-1px);
+}
+
+.pfm-v21-advice-item {
+  align-items: flex-start !important;
+  min-height: 112px !important;
+}
+
+.pfm-v21-advice-item div {
+  align-self: center;
+}
+
+.pfm-v21-advice-item span {
+  display: block;
+  max-width: 100%;
+  color: #526863 !important;
+  font-size: 13.2px !important;
+  line-height: 1.55 !important;
+}
+
+.pfm-v18-unlock-card {
+  width: min(1180px, calc(100% - 72px)) !important;
+  margin: 20px auto 0 !important;
+  padding: 26px 36px 24px !important;
+  border-radius: 24px !important;
+}
+
+.pfm-v18-unlock-card .pfm-v17-eyebrow {
+  margin-bottom: 7px !important;
+  font-size: 12.5px !important;
+}
+
+.pfm-v18-unlock-card h2 {
+  margin-bottom: 8px !important;
+  font-size: clamp(22px, 1.7vw, 30px) !important;
+}
+
+.pfm-v18-unlock-card > p:not(.pfm-v17-eyebrow) {
+  max-width: 760px !important;
+  margin-bottom: 16px !important;
+  font-size: 13.8px !important;
+  line-height: 1.55 !important;
+}
+
+.pfm-v18-unlock-points {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  max-width: 760px !important;
+  margin: 0 auto 16px !important;
+  gap: 9px !important;
+}
+
+.pfm-v18-unlock-points span {
+  min-height: 38px !important;
+  padding: 7px 10px !important;
+  border-radius: 12px !important;
+  font-size: 12.5px !important;
+}
+
+.pfm-v18-unlock-form.is-button-only {
+  max-width: 310px !important;
+}
+
+.pfm-v18-unlock-form button,
+.pfm-v18-pdf-actions button {
+  min-height: 48px !important;
+  font-size: 14px !important;
+}
+
+.pfm-v18-unlocked-note {
+  min-height: 42px !important;
+  padding: 0 20px !important;
+  font-size: 13px !important;
+}
+
+.pfm-v18-restart-link {
+  margin-top: 10px !important;
+  padding: 7px 15px !important;
+  font-size: 12px !important;
+}
+
+@media (max-width: 1180px) {
+  .pfm-v21-consultant-summary {
+    width: min(100% - 40px, 920px) !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .pfm-v21-consultant-summary {
+    width: calc(100% - 24px) !important;
+    grid-template-columns: 1fr;
+  }
+
+  .pfm-v18-unlock-card {
+    width: calc(100% - 24px) !important;
+    padding: 22px 18px !important;
+  }
+
+  .pfm-v18-unlock-points {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 12mm;
+  }
+
+  html,
+  body {
+    background: #fff !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .site-header,
+  .pfm-v18-unlock-card,
+  .pfm-v18-pdf-actions,
+  .pfm-v18-restart-link {
+    display: none !important;
+  }
+
+  .pfm-v17-result-page {
+    padding: 0 !important;
+    background: #fff !important;
+  }
+
+  .pfm-v17-hero-card,
+  .pfm-v21-consultant-summary,
+  .pfm-v17-section,
+  .pfm-v17-two-col,
+  .pfm-v17-hidden-cost,
+  .pfm-v17-blueprint-nav {
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 0 8mm !important;
+    box-shadow: none !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .pfm-v17-hero-card,
+  .pfm-v17-section,
+  .pfm-v17-blueprint-nav,
+  .pfm-v17-hidden-cost {
+    border-radius: 8mm !important;
+    padding: 9mm !important;
+  }
+
+  .pfm-v17-two-col,
+  .pfm-v21-consultant-summary {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 5mm !important;
+  }
+
+  .pfm-v17-metric-grid.four,
+  .pfm-v17-profit-bottom {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .pfm-v17-profit-top,
+  .pfm-v17-metric-grid.three,
+  .pfm-v17-radar-layout {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* =========================================================
+   PFM V21.5 Quality Fixes
+   - equal container widths
+   - compact consultant summary and unlock CTA
+   - full-width consultant insight blocks
+   - cleaner problem/strength advice labels
+   - dedicated A4 PDF print report
+========================================================= */
+.pfm-v21-consultant-summary,
+.pfm-v18-unlock-card,
+.pfm-v18-pdf-actions {
+  width: min(1120px, calc(100% - 72px)) !important;
+}
+
+.pfm-v21-consultant-summary {
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) !important;
+  gap: 12px !important;
+}
+
+.pfm-v21-consultant-summary > div {
+  min-height: 118px !important;
+  padding: 16px 18px !important;
+}
+
+.pfm-v21-consultant-summary strong {
+  font-size: 18px !important;
+  line-height: 1.22 !important;
+  word-break: keep-all !important;
+}
+
+.pfm-v21-consultant-summary p {
+  font-size: 12.3px !important;
+  line-height: 1.5 !important;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.pfm-v18-unlock-card {
+  padding: 28px 34px 24px !important;
+}
+
+.pfm-v18-unlock-points {
+  max-width: 680px !important;
+}
+
+.pfm-v17-insight-box,
+.pfm-v18-overview-findings {
+  width: 100% !important;
+  max-width: none !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.pfm-v21-advice-item {
+  min-height: 168px !important;
+  align-items: start !important;
+}
+
+.pfm-v21-advice-item div {
+  align-self: start !important;
+  padding-top: 2px;
+}
+
+.pfm-v21-advice-item p {
+  margin: 6px 0 8px !important;
+  color: #526863 !important;
+  font-size: 13.2px !important;
+  line-height: 1.55 !important;
+}
+
+.pfm-v21-advice-item em {
+  display: inline-flex;
+  align-items: center;
+  margin: 7px 8px 3px 0;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #fff1d2;
+  color: #9b5e06;
+  font-size: 12px;
+  line-height: 1.35;
+  font-style: normal;
+  font-weight: 900;
+}
+
+.pfm-v21-advice-item span {
+  margin: 0 0 2px !important;
+}
+
+.pfm-v21-pdf-report {
+  display: none;
+}
+
+@media (max-width: 1180px) {
+  .pfm-v21-consultant-summary,
+  .pfm-v18-unlock-card,
+  .pfm-v18-pdf-actions {
+    width: min(100% - 40px, 900px) !important;
+  }
+  .pfm-v21-consultant-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media print {
+  @page { size: A4 portrait; margin: 0; }
+
+  .site-header,
+  .pfm-v17-result-page > :not(.pfm-v21-pdf-report) {
+    display: none !important;
+  }
+
+  .pfm-v21-pdf-report {
+    display: block !important;
+    background: #fff !important;
+    color: #153f38 !important;
+  }
+
+  .pfm-v17-result-page {
+    padding: 0 !important;
+    background: #fff !important;
+  }
+
+  .pfm-v21-pdf-page {
+    display: block !important;
+    position: relative;
+    width: 210mm;
+    height: 297mm;
+    padding: 24mm 20mm 18mm;
+    page-break-after: always;
+    break-after: page;
+    box-sizing: border-box;
+    background: #fffdf8;
+    color: #153f38;
+    overflow: hidden;
+    font-family: Arial, 'Noto Sans TC', sans-serif;
+  }
+
+  .pfm-v21-pdf-page::after {
+    content: 'PFM';
+    position: absolute;
+    right: 18mm;
+    bottom: 24mm;
+    font-family: Georgia, serif;
+    font-size: 72pt;
+    color: rgba(122, 16, 32, .035);
+    font-weight: 900;
+    z-index: 0;
+  }
+
+  .pfm-v21-pdf-page > * { position: relative; z-index: 1; }
+
+  .pfm-v21-pdf-page header {
+    display: flex;
+    align-items: baseline;
+    gap: 5mm;
+    margin-bottom: 14mm;
+    color: #7d1021;
+  }
+
+  .pfm-v21-pdf-page header span {
+    font-size: 24pt;
+    font-weight: 950;
+  }
+
+  .pfm-v21-pdf-page h1 {
+    margin: 18mm 0 20mm;
+    color: #7d1021;
+    font-size: 28pt;
+    line-height: 1.35;
+    letter-spacing: .02em;
+  }
+
+  .pfm-v21-pdf-page h2 {
+    margin: 0;
+    font-size: 22pt;
+    line-height: 1.2;
+    color: #7d1021;
+  }
+
+  .pfm-v21-pdf-page h3 {
+    margin: 0 0 4mm;
+    color: #7d1021;
+    font-size: 13.5pt;
+  }
+
+  .pfm-v21-pdf-page p,
+  .pfm-v21-pdf-page li {
+    color: #5c706c;
+    font-size: 11pt;
+    line-height: 1.75;
+  }
+
+  .pfm-v21-pdf-page footer {
+    position: absolute;
+    left: 20mm;
+    bottom: 10mm;
+    color: #9a8a72;
+    font-size: 9pt;
+    font-weight: 700;
+  }
+
+  .pfm-v21-pdf-brand {
+    margin: 0;
+    color: #a07416 !important;
+    font-size: 12pt !important;
+    font-weight: 900;
+    letter-spacing: .08em;
+  }
+
+  .pfm-v21-pdf-cover-box {
+    width: 118mm;
+    padding: 10mm 12mm;
+    border: 1px solid rgba(214,167,70,.38);
+    border-radius: 8mm;
+    background: #fffdf8;
+  }
+
+  .pfm-v21-pdf-cover-box p {
+    display: grid;
+    grid-template-columns: 34mm 1fr;
+    gap: 8mm;
+    margin: 0 0 5mm;
+  }
+
+  .pfm-v21-pdf-cover-box p:last-child { margin-bottom: 0; }
+  .pfm-v21-pdf-cover-box span { color: #a07416; font-weight: 900; }
+  .pfm-v21-pdf-cover-box strong { color: #153f38; font-size: 12pt; }
+
+  .pfm-v21-pdf-grid {
+    display: grid;
+    gap: 6mm;
+    margin-bottom: 12mm;
+  }
+
+  .pfm-v21-pdf-grid.two { grid-template-columns: repeat(2, 1fr); }
+  .pfm-v21-pdf-grid.four { grid-template-columns: repeat(2, 1fr); }
+
+  .pfm-v21-pdf-grid div,
+  .pfm-v21-pdf-list section,
+  .pfm-v21-pdf-roadmap section,
+  .pfm-v21-pdf-insight,
+  .pfm-v21-pdf-final {
+    border: 1px solid rgba(214,167,70,.34);
+    border-radius: 6mm;
+    background: #fffaf4;
+    padding: 7mm;
+  }
+
+  .pfm-v21-pdf-grid small {
+    display: block;
+    color: #a07416;
+    font-size: 9.5pt;
+    font-weight: 900;
+    margin-bottom: 3mm;
+  }
+
+  .pfm-v21-pdf-grid strong {
+    display: block;
+    color: #153f38;
+    font-size: 18pt;
+    line-height: 1.2;
+  }
+
+  .pfm-v21-pdf-insight ul { margin: 0; padding-left: 5mm; }
+  .pfm-v21-pdf-insight p { margin: 0 0 4mm; }
+
+  .pfm-v21-pdf-list {
+    display: grid;
+    gap: 5mm;
+  }
+
+  .pfm-v21-pdf-list section {
+    display: grid;
+    grid-template-columns: 11mm 1fr;
+    gap: 5mm;
+    padding: 6mm;
+  }
+
+  .pfm-v21-pdf-list b,
+  .pfm-v21-pdf-roadmap b {
+    display: grid;
+    place-items: center;
+    width: 10mm;
+    height: 10mm;
+    border-radius: 50%;
+    background: #7d1021;
+    color: #fff;
+    font-size: 12pt;
+  }
+
+  .pfm-v21-pdf-list p { margin: 0 0 2.5mm; }
+
+  .pfm-v21-pdf-roadmap {
+    display: grid;
+    gap: 6mm;
+    margin-bottom: 10mm;
+  }
+
+  .pfm-v21-pdf-roadmap section {
+    display: grid;
+    grid-template-columns: 14mm 1fr;
+    gap: 5mm;
+    align-items: center;
+  }
+
+  .pfm-v21-pdf-final {
+    background: #7d1021;
+  }
+
+  .pfm-v21-pdf-final h3,
+  .pfm-v21-pdf-final p { color: #fff !important; }
+}
+
+/* =========================================================
+   PFM V21.6 Layout Fixes
+   - 確認顧問摘要 / 解鎖 CTA 與主要章節等寬
+   - 顧問摘要改為左文案 + 右側 2x2 摘要卡，避免標題換行
+   - 三大問題/優勢標籤改為緊湊段落，不再有過大空格
+   - 第一～第四章顧問解讀拉滿對齊
+   - PDF 增加完整 A4 多頁內容
+========================================================= */
+.pfm-v21-consultant-summary,
+.pfm-v18-unlock-card,
+.pfm-v18-pdf-actions {
+  width: min(1180px, calc(100% - 72px)) !important;
+  max-width: 1180px !important;
+}
+
+.pfm-v21-consultant-summary {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1.18fr) repeat(3, minmax(160px, 0.72fr)) !important;
+  gap: 14px !important;
+  align-items: stretch !important;
+}
+
+.pfm-v21-consultant-summary > div {
+  min-height: 118px !important;
+  padding: 16px 18px !important;
+}
+
+.pfm-v21-consultant-summary span {
+  white-space: nowrap !important;
+  letter-spacing: .04em !important;
+}
+
+.pfm-v21-consultant-summary strong {
+  font-size: 18px !important;
+  line-height: 1.22 !important;
+  word-break: keep-all !important;
+  overflow-wrap: normal !important;
+}
+
+.pfm-v21-consultant-summary p {
+  font-size: 12.4px !important;
+  line-height: 1.5 !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 3 !important;
+  -webkit-box-orient: vertical !important;
+  overflow: hidden !important;
+}
+
+.pfm-v18-unlock-card {
+  padding: 30px 38px 26px !important;
+  border-radius: 26px !important;
+}
+
+.pfm-v18-unlock-points {
+  max-width: 780px !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+}
+
+.pfm-v18-unlock-points span {
+  min-height: 40px !important;
+}
+
+.pfm-v17-insight-box,
+.pfm-v18-overview-findings {
+  width: 100% !important;
+  max-width: none !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  grid-column: 1 / -1 !important;
+}
+
+.pfm-v21-advice-item {
+  min-height: 0 !important;
+  align-items: flex-start !important;
+}
+
+.pfm-v21-advice-item div {
+  align-self: flex-start !important;
+}
+
+.pfm-v21-advice-item > div > p {
+  margin: 6px 0 10px !important;
+  color: #526863 !important;
+  font-size: 13.2px !important;
+  line-height: 1.55 !important;
+}
+
+.pfm-v21-advice-line {
+  display: block !important;
+  margin: 7px 0 0 !important;
+  padding: 9px 10px !important;
+  border-radius: 12px !important;
+  background: rgba(255, 241, 210, .58) !important;
+  border: 1px solid rgba(214, 167, 70, .22) !important;
+}
+
+.pfm-v21-advice-line em {
+  display: inline !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: #8a4d05 !important;
+  font-size: 12.5px !important;
+  line-height: 1.6 !important;
+  font-style: normal !important;
+  font-weight: 950 !important;
+}
+
+.pfm-v21-advice-line span {
+  display: inline !important;
+  margin: 0 !important;
+  color: #526863 !important;
+  font-size: 13px !important;
+  line-height: 1.6 !important;
+}
+
+@media (max-width: 1180px) {
+  .pfm-v21-consultant-summary,
+  .pfm-v18-unlock-card,
+  .pfm-v18-pdf-actions {
+    width: min(100% - 40px, 920px) !important;
+  }
+  .pfm-v21-consultant-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .pfm-v21-consultant-summary,
+  .pfm-v18-unlock-card,
+  .pfm-v18-pdf-actions {
+    width: calc(100% - 24px) !important;
+  }
+  .pfm-v21-consultant-summary {
+    grid-template-columns: 1fr !important;
+  }
+  .pfm-v18-unlock-card {
+    padding: 24px 18px !important;
+  }
+  .pfm-v18-unlock-points {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media print {
+  .pfm-v21-pdf-grid.three { grid-template-columns: repeat(3, 1fr); }
+}
+
+/* =========================================================
+   PFM V21.7 Width & PDF Final Fix
+   - 所有大區塊寬度一律跟 Hero 相同
+   - 修正顧問摘要與免費解鎖寬度
+   - 修正 PDF Header/Blank page/90天改善直排
+========================================================= */
+:root {
+  --pfm-result-container: min(1120px, calc(100% - 72px));
+}
+
+.pfm-v17-hero-card,
+.pfm-v17-section,
+.pfm-v17-two-col,
+.pfm-v17-hidden-cost,
+.pfm-v17-blueprint-nav,
+.pfm-v21-consultant-summary,
+.pfm-v18-unlock-card,
+.pfm-v18-pdf-actions {
+  width: var(--pfm-result-container) !important;
+  max-width: 1120px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.pfm-v21-consultant-summary {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 14px !important;
+}
+
+.pfm-v21-consultant-summary > div {
+  min-height: 112px !important;
+  padding: 17px 20px !important;
+}
+
+.pfm-v21-consultant-summary span,
+.pfm-v21-consultant-summary strong {
+  white-space: normal !important;
+  word-break: keep-all !important;
+  overflow-wrap: normal !important;
+}
+
+.pfm-v21-consultant-summary strong {
+  font-size: 18px !important;
+}
+
+.pfm-v18-unlock-card {
+  padding: 30px 38px 26px !important;
+}
+
+.pfm-v18-unlock-points {
+  max-width: 760px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+@media (max-width: 1180px) {
+  :root { --pfm-result-container: min(100% - 40px, 920px); }
+  .pfm-v21-consultant-summary { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+}
+
+@media (max-width: 640px) {
+  :root { --pfm-result-container: calc(100% - 24px); }
+  .pfm-v21-consultant-summary { grid-template-columns: 1fr !important; }
+  .pfm-v18-unlock-card { padding: 24px 18px !important; }
+}
+
+body.pfm-v21-print-mode .site-header,
+body.pfm-v21-print-mode .pfm-lux-header,
+body.pfm-v21-print-mode .pfm-v17-result-page > :not(.pfm-v21-pdf-report) {
+  display: none !important;
+}
+
+body.pfm-v21-print-mode .pfm-v21-pdf-report {
+  display: block !important;
+}
+
+@media print {
+  html, body {
+    width: 210mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #fff !important;
+  }
+
+  .site-header,
+  .pfm-lux-header,
+  body > header,
+  .pfm-v18-unlock-card,
+  .pfm-v18-pdf-actions,
+  .pfm-v18-restart-link,
+  .pfm-v17-result-page > :not(.pfm-v21-pdf-report) {
+    display: none !important;
+  }
+
+  .pfm-v17-result-page {
+    padding: 0 !important;
+    margin: 0 !important;
+    background: #fff !important;
+  }
+
+  .pfm-v21-pdf-report {
+    display: block !important;
+    width: 210mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #fff !important;
+  }
+
+  .pfm-v21-pdf-page {
+    width: 210mm !important;
+    height: 296.5mm !important;
+    min-height: 296.5mm !important;
+    max-height: 296.5mm !important;
+    padding: 22mm 20mm 16mm !important;
+    page-break-after: always !important;
+    break-after: page !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    overflow: hidden !important;
+  }
+
+  .pfm-v21-pdf-page:last-child {
+    page-break-after: auto !important;
+    break-after: auto !important;
+  }
+
+  .pfm-v21-pdf-page.is-cover h1 {
+    margin: 14mm 0 16mm !important;
+  }
+
+  .pfm-v21-pdf-page header {
+    margin-bottom: 10mm !important;
+  }
+
+  .pfm-v21-pdf-roadmap {
+    display: grid !important;
+    gap: 6mm !important;
+    margin-bottom: 10mm !important;
+  }
+
+  .pfm-v21-pdf-roadmap section {
+    display: grid !important;
+    grid-template-columns: 12mm minmax(0, 1fr) !important;
+    grid-template-rows: auto auto !important;
+    gap: 2mm 5mm !important;
+    align-items: start !important;
+    padding: 7mm !important;
+    min-height: 32mm !important;
+  }
+
+  .pfm-v21-pdf-roadmap section b {
+    grid-column: 1 !important;
+    grid-row: 1 / span 2 !important;
+    width: 10mm !important;
+    height: 10mm !important;
+    align-self: start !important;
+  }
+
+  .pfm-v21-pdf-roadmap section h3,
+  .pfm-v21-pdf-roadmap section p {
+    grid-column: 2 !important;
+    min-width: 0 !important;
+    width: auto !important;
+    white-space: normal !important;
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+  }
+
+  .pfm-v21-pdf-roadmap section h3 {
+    grid-row: 1 !important;
+    margin: 0 0 1mm !important;
+  }
+
+  .pfm-v21-pdf-roadmap section p {
+    grid-row: 2 !important;
+    margin: 0 !important;
+    line-height: 1.65 !important;
+  }
+}
